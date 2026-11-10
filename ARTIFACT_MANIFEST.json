@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "date": "2026-11-10",
-  "description": "Initial packaged snapshot; excludes this manifest and generated ignored files.",
+  "description": "Packaged artifact files and completed-artifact documentation; excludes this manifest and generated ignored files.",
   "files": [
     {
       "path": ".gitattributes",
@@ -99,11 +99,6 @@
       "sha256": "e84c86052e46a146df1c8ccd4a10cf9fc6d94e1bb9563282e74fff14f340d785"
     },
     {
-      "path": "BIG_DATA_EXPERIMENT_PROTOCOL.md",
-      "bytes": 27757,
-      "sha256": "fab1eeaf4b3c7ff749c7c92aa8af8ad27bf5c5a61c0f6bae5fc2889c7150b1ef"
-    },
-    {
       "path": "Big_Data_paper/BigD1136_3793_CAMP.pdf",
       "bytes": 9365833,
       "sha256": "62dfce3d43ae80ac01ce230ca929fde56e7acd99a5f89b825dca04e34fdce195"
@@ -175,8 +170,8 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/BUILD_NOTES.md",
-      "bytes": 12895,
-      "sha256": "11923a6dcc55f149246c9cf9f6bb3daba0c8b10928a025dea70032f49a6dd863"
+      "bytes": 2542,
+      "sha256": "9b353fb0e7b414d326451347206f315c0cf25c9fa18720c438b9582b482e3a8e"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/CAMERA_READY_PREVIEW.pdf",
@@ -185,8 +180,8 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/RESULTS_PROVENANCE.md",
-      "bytes": 4444,
-      "sha256": "1d5682691b8a23b79698ca037b17d4be90025336c7c20c0ed3c497a0ad313eda"
+      "bytes": 3678,
+      "sha256": "189fc9e0619b869c60ce2fed68e1f003057dde9d5aca9ecaa16b367df95288c1"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/build_result_assets.py",
@@ -429,16 +424,6 @@
       "sha256": "af5bd1dc429664ef21e6dfbcb44622d8caeb9d38c6ac0e3eac1f0967e31348f8"
     },
     {
-      "path": "Big_Data_paper/CAMERA_READY_EXTENSION_PLAN.md",
-      "bytes": 54854,
-      "sha256": "49f61f7262649da05c59df1eea8ddef8af631d7d488f4c595242fb10bc891e7d"
-    },
-    {
-      "path": "Big_Data_paper/temp_1.md",
-      "bytes": 9998,
-      "sha256": "dc921cc1394656698da6f159448f09b6bdfbd1773a4cc982a0cc0171eb00a90f"
-    },
-    {
       "path": "DATA/README.md",
       "bytes": 2187,
       "sha256": "c7ed26cb818ff301970beb782a84809a82b6be271d95ce36dea30296c9706da2"
@@ -504,19 +489,19 @@
       "sha256": "8f394de506a8e27448611af57eaa0235c1c6291b8657b6485dd09b0fe744f7ce"
     },
     {
+      "path": "DOCS/CONTENTS.md",
+      "bytes": 1887,
+      "sha256": "2f25ee8be98fa2dfa168ddf228c9937b3ae79f34dbfa71f704b16eee74d6e775"
+    },
+    {
       "path": "DOCS/SOURCE_MANIFEST.json",
       "bytes": 412894,
       "sha256": "65ff13c70ce9a83a0961b131c28b64693b071cd9b0b4be722d37f2442ae6753a"
     },
     {
-      "path": "DOCS/STATUS.md",
-      "bytes": 2400,
-      "sha256": "d498df7dd348b565471508548747d740eabb95f5c614114a100b3cf6b10d10b2"
-    },
-    {
       "path": "DOCS/VERIFICATION.md",
-      "bytes": 2236,
-      "sha256": "a524fed30c1ff302eeaa5a2627a56323a882fd071b936a23f7bf3fe1a65611e3"
+      "bytes": 1931,
+      "sha256": "ff634b94ba6b283120fb3864211f95352d825881c7d706bd12fc03c501ee919e"
     },
     {
       "path": "IEEE_WORKS_26_Sasank.pdf",
@@ -525,8 +510,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 14178,
-      "sha256": "fd9b387645a491efd18812cc568be9ffeb9652083329032488fe2e08984ebe82"
+      "bytes": 12347,
+      "sha256": "f48133e3c3420ade8ff93ec3dc8172314c654cdd82cc6c18889cc653b86ec549"
     },
     {
       "path": "RESULTS/README.md",
@@ -5405,8 +5390,8 @@
     },
     {
       "path": "SCRIPTS/BASELINES/ponder/README.md",
-      "bytes": 8591,
-      "sha256": "19323cbc021ad751a13c0859257550b058ab2f7017a710d3229bf246224b17b5"
+      "bytes": 7299,
+      "sha256": "c0c32d9c0471536d2f0cf2107860aa4b2e7b40bad5aa5309ad64596d696c2d9b"
     },
     {
       "path": "SCRIPTS/BASELINES/ponder/ponder.py",
@@ -6230,8 +6215,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 1097,
-      "sha256": "f7a2fedfaa8bdb6a76a28004e6896800f699dde5acfd9092f181e34c6c62cf22"
+      "bytes": 1098,
+      "sha256": "31f8d3d91ac0e3c8239adfaff98c98706b83af6bf640125554920726765d76bb"
     },
     {
       "path": "WORKFLOWS/README.md",

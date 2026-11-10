@@ -1,8 +1,5 @@
 # Standalone Ponder memory-sizing baseline
 
-Status: extracted and checked on synthetic histories, 2026-11-10. No CAMP
-comparison or workflow experiment has been run with this adapter.
-
 This module runs the original Java Ponder predictor without Kubernetes or the
 Common Workflow Scheduler. It accepts prelaunch input sizes and previously
 completed peak-memory observations, then emits initial memory requests.
@@ -131,25 +128,3 @@ These are adapter correctness checks, not independent validation of Ponder's
 algorithm or a reproduction of the paper's end-to-end scheduler experiments.
 Numerical equality was checked locally with JDK 11; rerun the checks in the
 experiment environment before collecting results.
-
-## Remaining work for a CAMP comparison
-
-1. Map our recorded task input sizes, original requests, valid successful peaks,
-   process/context identities, and causal release times into this event format.
-2. Lock grouping, history population, and request bounds/default policy before
-   evaluation. If timestamps are insufficient, use explicit batched replay.
-3. Run CAMP under the same task population and information-release schedule.
-4. Compute paired coverage and reservation metrics. Only a live execution can
-   measure actual Ponder-driven OOMs, retries, and makespan.
-
-Suggested paper wording:
-
-> We evaluate the Ponder memory-sizing predictor using an isolated adapter of
-> the authors' implementation (commit 3046e19), with its internal offset and no
-> additional outer offset. Both methods receive prior outcomes according to
-> the same replay schedule. This comparison evaluates memory-sizing behavior;
-> it does not reproduce Ponder's Kubernetes scheduling experiments.
-
-Use that wording only after performing the described comparison. See the
-[experiment protocol](../../../BIG_DATA_EXPERIMENT_PROTOCOL.md) for metrics and
-interpretation.

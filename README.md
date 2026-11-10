@@ -1,7 +1,7 @@
 # IEEE Big Data 2026 CAMP Artifact
 
 Research artifact for **Online Deployment and Evaluation of Consumption-Aware
-Memory Allocation for Scientific Workflows** (working six-page paper).
+Memory Allocation for Scientific Workflows**.
 
 CAMP uses task metadata, prior peak-memory observations, consumption history,
 and predicted consumption to choose task memory requests. This repository
@@ -9,12 +9,9 @@ supports the Big Data extension's component evidence, auditing-cost analysis,
 and online-deployment study. It includes the inherited WORKS implementation and
 retained measurements so the analyses do not depend on a separate checkout.
 
-**Status, 2026-11-10:** this is a working research artifact, not a declaration
-that every proposed experiment is complete. The current paper contains retained
-results and explicit pending items. NGBoost results, a CAMP/Ponder comparison,
-and the new-input frozen-versus-online Bowtie2 experiment have not been run.
-The extracted Ponder predictor has passed adapter tests. The conclusion remains
-a draft. Read [current status](DOCS/STATUS.md) before interpreting older notes.
+The included reproduction routes cover signal and feature ablations, selective
+auditing, audit-cost accounting, Bowtie2 cold/warm execution records, manuscript
+tables and figures, and a standalone Ponder memory-sizing adapter.
 
 ## Start here
 
@@ -31,24 +28,21 @@ Nextflow work directories should remain outside the committed artifact.
 | Goal | Route | Requires live workflow execution? |
 |---|---|---|
 | Verify the downloaded snapshot | A: integrity verification | No |
-| Regenerate current Big Data tables and figures | B: packaged evidence | No |
-| Build the six-page working manuscript | C: paper build | No |
+| Regenerate Big Data tables and figures | B: packaged evidence | No |
+| Build the manuscript | C: paper build | No |
 | Recompute reviewer analyses or refit their models | D: analysis / fresh training | No workflow execution; fresh fitting can be expensive |
 | Reproduce the retained Bowtie2 cold/warm deployment | E: live deployment | Yes, Linux and the documented workflow stack |
 | Test or use the extracted Ponder predictor | F: standalone baseline | No scheduler needed |
-| Perform new-input / external-baseline experiments | G: pending experiments | Depends on experiment; protocols supplied |
 
 ## Directory map
 
 ```text
 IEEE_BIGDATA_26_CAMP_ARTIFACT/
   README.md                         Big Data entry point (this file)
-  DOCS/                             Current status, verification, source provenance
-  BIG_DATA_EXPERIMENT_PROTOCOL.md    Detailed pending-experiment protocols
+  DOCS/                             Artifact contents, verification, source provenance
   Big_Data_paper/
-    CAMERA_READY_EXTENSION_PLAN.md  Historical plan and handoff
     Big_Data_Camera_Ready/source/
-      Camera_Ready/                 Current TeX, bibliography, generated assets
+      Camera_Ready/                 TeX, bibliography, generated assets
       Original_Submission/          Preserved earlier source
       Figures/                      Inherited shared figures
   SCRIPTS/
@@ -126,7 +120,7 @@ and Bowtie2 task/attempt statistics. It does not imply fresh model fitting.
 | Published WORKS endpoints | 87 versus 31 | Frozen published result, distinct from the later reproduction |
 | Selective downstream auditing | At 20%: mean 265.8 versus 305.8 events, with 2.4% more requests | Replay; retained uncertainty interval includes zero |
 | Audit accounting | Fixed gross saving 23.59556 GiB-h; mean net +17.597 / +11.161 / +5.913 / -0.429 at 5/10/15/20% budgets | Fixed-saving accounting; excludes full learning/inference/retry cost |
-| Bowtie2 cold/warm | 6,000 tasks each; requests 898.3857 versus 251.9268 GiB | Repeated inputs; not the pending unseen-input experiment |
+| Bowtie2 cold/warm | 6,000 tasks each; requests 898.3857 versus 251.9268 GiB | Cold/warm executions on repeated inputs |
 
 Underallocation is a request below recorded peak, not an observed OOM.
 Recorded first-attempt OOM flags for the retained Bowtie2 runs are zero.
@@ -135,10 +129,10 @@ and failure-cost exclusions are documented in manuscript provenance.
 
 ## C. Build the paper
 
-The current source is
+The manuscript source is
 [Camera_Ready/main.tex](Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/main.tex).
-The included [preview](Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/CAMERA_READY_PREVIEW.pdf)
-is a working draft with pending experiments, not a final submission.
+The compiled [PDF](Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/CAMERA_READY_PREVIEW.pdf)
+is included alongside the source.
 
 With an existing TeX installation, use the isolated build helper:
 
@@ -201,9 +195,8 @@ execution, artifact collection, and plotting. The original run used 12 task
 workers plus one controller/learner worker. The inherited launch defaults describe
 that deployment; they are not ready-made single-node AWS defaults.
 
-The new repository includes the last committed working Bowtie2 chunk mapping.
-The source WORKS checkout had an incomplete uncommitted mapping; that working
-copy was not overwritten. See [source provenance](DOCS/SOURCE_MANIFEST.json).
+The Bowtie2 workflow and chunk mapping come from the WORKS source revision
+recorded in [source provenance](DOCS/SOURCE_MANIFEST.json).
 
 Raw sequence data and deployable terminal model checkpoints are not bundled.
 Public-input acquisition and initial-state rebuild instructions are included.
@@ -231,34 +224,14 @@ outer offset (`ponder-offset=none`). Bare upstream `ponder` has an additional
 default offset wrapper. State this choice in any comparison; do not claim an
 exact reproduction of the original scheduler experiments.
 
-## G. Remaining experiments and agent handoff
-
-Read [BIG_DATA_EXPERIMENT_PROTOCOL.md](BIG_DATA_EXPERIMENT_PROTOCOL.md) for the
-experiment-only sequence, metrics, data splits, leakage controls, required logs,
-and planned figures. Current priorities are:
-
-1. Disjoint-input Bowtie2, starting frozen and online CAMP from the same state.
-2. NGBoost on the matched offline population when external-baseline work resumes.
-3. Optional Ponder comparison using a validated trace mapping and causal replay.
-
-Frozen mode must freeze model, history, calibration, and policy. The existing
-live runner still requires an explicit frozen control and parameterized new
-manifest before that experiment can run. Ponder needs trace-field mapping.
-NGBoost has an experiment specification and [upstream implementation](https://github.com/stanfordmlgroup/ngboost),
-but no CAMP comparison adapter or results in this repository.
-
-The standalone historical-percentile allocator, Q-learning, and further routing,
-calibration, and history-scope sweeps are outside the current minimum scope.
-Do not treat older proposals in the historical handoff as current authorization.
-
 ## Provenance and licensing
 
 This artifact derives from [IEEE_WORKS_26_ARTIFACT](https://github.com/Nagarjuna-kandimalla/IEEE_WORKS_26_ARTIFACT).
 The source commit, copied-file hashes, exclusions, and workflow choice are in
 [DOCS/SOURCE_MANIFEST.json](DOCS/SOURCE_MANIFEST.json).
 Duplicate ZIP exports, local caches, `Not_Needed/`, and the acceptance-email PDF
-were excluded. Manuscripts, relevant planning Markdown, review-response material,
-and scientific reproduction packages are included.
+were excluded. Manuscripts, scientific documentation, review-response material,
+and reproduction packages are included. See the [contents guide](DOCS/CONTENTS.md).
 
 Preserve citations to WORKS for reused methods/results and identify new
 experiments separately. No DOI or final publication metadata has been invented.

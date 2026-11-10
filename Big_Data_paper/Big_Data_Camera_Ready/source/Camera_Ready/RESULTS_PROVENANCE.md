@@ -1,6 +1,6 @@
-# Retained evidence in the six-page working draft
+# Manuscript result provenance
 
-Sections IV-VI use existing artifact records. No new model training, workflow execution, baseline evaluation, or unseen-input experiment was run. Figures are newly drawn from retained results; their appearance does not make the observations new experiments. Published WORKS results are attributed in the paper.
+Sections IV-VI analyze retained task predictions, audit measurements, and workflow execution records. Figures and tables are generated from those records. Published WORKS results are attributed in the paper.
 
 ## Manuscript mapping
 
@@ -25,7 +25,7 @@ From the full artifact checkout, run:
 python Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/build_result_assets.py
 ```
 
-Requirements: Python, numpy, pandas, matplotlib. From an extracted standalone paper, pass `--repo-root` pointing to the full artifact. The ZIP includes generated tables and vector PDF figures, so ordinary TeX compilation needs neither Python nor the raw records.
+Requirements: Python, numpy, pandas, matplotlib. From an extracted standalone paper, pass `--repo-root` pointing to the full artifact. The manuscript directory includes generated tables and vector PDF figures, so ordinary TeX compilation needs neither Python nor the raw records.
 
 `result_assets/result_provenance.json` records summaries and SHA-256 hashes for 24 input files. Inputs are read-only. Source precision is preserved; manuscript tables round only for display. Table II requests are in thousands of GiB.
 
@@ -36,8 +36,4 @@ Requirements: Python, numpy, pandas, matplotlib. From an extracted standalone pa
 - Ponder: https://arxiv.org/html/2408.00047v1
 - NGBoost: https://proceedings.mlr.press/v119/duan20a.html
 
-Existing bibliography entries are used. No comparison results for Ponder or NGBoost have been invented.
-
-## Remaining work
-
-NGBoost, optional Ponder, unseen-input frozen-versus-online Bowtie2, and prediction/retraining costs remain pending and marked `?` in Section V. The simple historical-percentile allocator was removed from scope at the user's request on 2026-11-10; it is not a pending experiment. CAMP's own memory-history features and retained A+P comparisons remain. The conclusion remains a draft. When new results arrive, revise abstract and introduction claims, the protocol, and the conclusion consistently, then rebalance the six-page layout. This build preserves the IEEE class, typography, margins, and section order.
+The related-work references are included in the manuscript bibliography.

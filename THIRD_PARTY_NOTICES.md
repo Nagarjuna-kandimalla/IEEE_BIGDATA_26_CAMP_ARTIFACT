@@ -14,4 +14,4 @@
 
 Research papers and figures remain attributed to their authors. Cite the accepted
 WORKS work for reused evidence and distinguish it from newly performed Big Data
-experiments. The Big Data manuscript is a working draft; no final DOI is claimed.
+experiments. Bibliographic metadata is preserved in the manuscript's bibliography.

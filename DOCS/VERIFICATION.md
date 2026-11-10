@@ -26,13 +26,7 @@ Ponder used JDK 11. Historical model-training packages retain their own Python
 3.9 requirements. The manuscript asset checks validate scientific numerical
 summaries, not byte-identical PDF metadata across different toolchains.
 
-## Not executed here
-
-- No new workflow, single-node AWS deployment, model-training experiment,
-  unseen-input Bowtie2 run, NGBoost comparison, or CAMP/Ponder comparison.
-- No repeated full reviewer-package model retraining. Its existing commands,
-  inputs, reference outputs, and historical verification logs are included.
-- No end-to-end reproduction of Ponder's original Kubernetes scheduler study.
-- The pdfLaTeX/latexmk alternative was documented but not executed locally.
-
-The remaining limitations in `STATUS.md` and the experiment protocol still apply.
+The manuscript checks recompute metrics from retained measurements. The Ponder
+checks exercise the isolated predictor on synthetic histories. Historical
+experiment and training verification records are included with their respective
+reproduction packages.

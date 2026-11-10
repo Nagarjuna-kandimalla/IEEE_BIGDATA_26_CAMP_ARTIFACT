@@ -1,0 +1,159 @@
+\section{Problem Description}
+\label{sec:problem}
+
+\begin{table}[t]
+\centering
+\caption{Notation used in the problem formulation.}
+\label{tab:notation}
+\footnotesize
+\begin{tabular}{@{}l p{5.6cm}@{}}
+\toprule
+\textbf{Symbol} & \textbf{Description} \\
+\midrule
+$t = 1,\dots,N$ & Sequential task index \\
+$\mathbf{s}_t$ & Static features, known at launch \\
+$a_t$ & Aggregate staged input size \\
+$c_t$ & Dynamic consumption signal, instrumentation-only \\
+$y_t$ & True peak memory (max RSS) \\
+$\hat{y}_t$ & Predicted peak memory \\
+$\mathcal{H}_m(t)$ & History of prior peak-memory outcomes \\
+$\mathcal{H}_c(t)$ & History of prior audited consumption traces \\
+$q_t \in \{0,1\}$ & Auditing decision for task $t$ \\
+$B \in (0,1]$ & Profiling budget (max audited fraction) \\
+$f$ & Memory predictor \\
+$\pi$ & Auditing policy \\
+$L(y_t,\hat{y}_t)$ & Asymmetric loss (underestimation penalized more) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+A workflow executes tasks $t = 1, \dots, N$ arriving sequentially. Before launching, a predictive framework must allocate a memory estimate $\hat{y}_t$ to task $t$. Each task $t$ is associated with:
+
+\begin{itemize}%[leftmargin=*]
+\item \textbf{Static features} ($\mathbf{s}_t$): A feature vector available at prelaunch scheduling time. This vector includes workflow metadata, process type, thread count, node constraints, including the aggregate staged input size $a_t = \sum_{f \in \text{staged}(t)} \text{size}(f)$. 
+\item \textbf{Dynamic Consumption} (\textbf{${c_{t}}$}):  A scalar tracking the empirical byte volume consumed by the task during runtime execution.  While highly predictive of peak memory requirements, this metric is observable exclusively through intrusive kernel-level instrumentation, rendering it causally hidden at task launch time ($c_t \notin \mathbf{s}_t$).
+
+\item \textbf{Target Peak Memory} (\textbf{${y_t}$}): The maximum Resident Set Size (RSS) physically measured post-execution.
+\end{itemize}
+
+Because tasks run concurrently and finish asynchronously, only information
+from tasks completed before this task's launch is available. We denote this
+causal history by two feature vectors, constructed only from information
+available before launch of task $t$:
+
+\begin{itemize}
+\item $\mathbf{h}_{m,t}$: features derived from peak-memory outcomes
+$y_\tau$ of tasks completed before launch of task $t$.
+\item $\mathbf{h}_{c,t}$: features derived from consumption traces $c_\tau$
+of tasks completed \emph{and audited} before launch of task $t$.
+\end{itemize}
+
+We write $\mathbf{h}_t = [\mathbf{h}_{m,t}, \mathbf{h}_{c,t}]$ for the
+combined history. Which prior tasks contribute to these vectors, and how
+their outcomes are summarized, is a modeling choice addressed in
+Section~\ref{sec:design}.
+
+
+At launch, a binary decision $q_t \in \{0,1\}$ determines whether task $t$ is to be instrumented:
+
+\begin{itemize}
+\item $q_t = 1$: the task is audited, so $(c_t, y_t)$ becomes available to future $\mathcal{H}_c$ and $\mathcal{H}_m$.
+\item $q_t = 0$: only $y_t$ becomes available; $c_t$ is never observed.
+\end{itemize}
+
+Auditing incurs overhead, so the fraction of audited tasks is capped by a budget $B \in (0,1]$:
+$$\frac{1}{N} \sum_{t=1}^{N} q_t \le B.$$
+
+We seek a memory predictor $f$ and an auditing policy $\pi$,
+
+
+$$\begin{aligned}
+\hat{y}_t = f(\mathbf{s}_t, \mathbf{h}_t), \qquad
+q_t = \pi(\mathbf{s}_t, \mathbf{h}_t),
+\end{aligned}$$
+
+that jointly minimize cumulative prediction loss subject to the budget constraint:
+
+\begin{equation}
+\min_{f,\pi} \; \sum_{t=1}^{N} L(y_t, \hat{y}_t) \quad \text{s.t.} \quad \frac{1}{N}\sum_{t=1}^N \mathbb{E}[q_t] \le B
+\end{equation}
+
+$L$ is asymmetric: it penalizes underestimation ($\hat{y}_t < y_t$) more heavily than overestimation, reflecting that under-provisioning risks OOM aborts while over-provisioning only wastes reserved resources.
+
+
+
+% \section{Problem and Running Example}
+
+% A workflow $w$ contains named processes. A \emph{task type} is a
+% workflow-process pair $(w,p)$; a \emph{task instance} $t$ invokes that type for
+% one sample or interval, while version and system configuration remain context.
+% At prelaunch decision time $d_t$, \toolname observes static features $S_t$,
+% including staged input size
+% \begin{equation}
+% a_t=\sum_{f\in\mathrm{staged}(t)}\mathrm{size}(f),
+% \end{equation}
+% over original, intermediate, and external files. During an audited execution it
+% measures
+% \begin{equation}
+% c_t=r_t+m_t,
+% \end{equation}
+% where $r_t$ sums successful explicit-read returns and $m_t$ counts attributable
+% file-backed faulted pages times page size. This operational kernel signal does
+% not imply that every counted byte is semantically unique.
+
+% Let $y_t$ be peak RSS. Histories $H_m(t)$ and $H_c(t)$ summarize only tasks
+% completed before $d_t$, respectively for peak memory and audited consumed data.
+% Since current consumption is unavailable, CAMP predicts it before allocating:
+% \begin{align}
+% \hat c_t&=g(S_t,H_m(t)),\\
+% \hat y_t&=f(S_t,H_m(t),H_c(t),\hat c_t),\\
+% c_t,y_t&\notin\mathrm{inputs}(t).
+% \label{eq:prelaunch-prediction}
+% \end{align}
+% At the same decision, $q_t\in\{0,1\}$ selects the eBPF or standard lane subject
+% to $\sum_{t\in T_w}q_t\le B_w$. The deployment objective is to reduce
+% first-attempt underallocation while controlling reservation and audit cost.
+
+% \begin{comment}
+% \begin{figure*}[t]
+% \centering
+% \includegraphics[width=0.98\textwidth]{source/Figures/fig_camp_live_architecture_candidate.pdf}
+% \caption{CAMP's live allocation and feedback loop. Nextflow supplies prelaunch
+% task features; CAMP assigns memory and selects the standard or eBPF audit lane
+% in Slurm. Only completed outcomes update SQLite and later model versions.}
+% \label{fig:camp-architecture}
+% \end{figure*}
+% \end{comment}
+
+% \begin{table}[t]
+% \caption{Temporal feature contract; prior means completed before $d_t$.}
+% \label{tab:features}
+% \centering
+% \scriptsize
+% \setlength{\tabcolsep}{2.5pt}
+% \begin{tabular}{@{}p{0.11\columnwidth}p{0.55\columnwidth}p{0.25\columnwidth}@{}}
+% \toprule
+% Set & Fields & Availability \\
+% \midrule
+% $S$ & workflow/process/version/system; staged-byte components; threads/heap;
+% interval/coverage & prelaunch \\
+% $H_m$ & peak p50/p95/p99, spread, support/confidence, scope & prior tasks \\
+% $C,H_c$ & read+mmap outcome; prior p50/p95/p99 and consumed/input ratio &
+% audited outcome/prior audits \\
+% $\hat c$ & current consumed-byte estimate from $S,H_m$ & prelaunch \\
+% $Y$ & peak RSS, runtime, exit/OOM status & post-run only \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+% \subsection{Running Example}
+% In nf-core/seqinspector, each \texttt{KRAKEN2\_KRAKEN2} invocation classifies
+% one metagenomic FASTQ sample and is a task instance. Before submission,
+% Nextflow exposes staged FASTQ/database sizes, process, threads, and system
+% configuration. CAMP retrieves compatible completed peak and audited-consumption
+% histories, predicts consumption and an upper-tail memory request, and applies
+% the audit gates. Every completed task records peak RSS; the audit lane also
+% records read and mmap-fault bytes. Completion updates SQLite and history
+% immediately and enters the next periodic model batch, so only later,
+% not-yet-scheduled tasks can use the new evidence.

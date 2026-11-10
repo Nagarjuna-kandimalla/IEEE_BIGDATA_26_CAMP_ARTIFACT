@@ -1,0 +1,17 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+% \toolname{} separates staged input size from selectively measured consumption and
+% uses only completed evidence to allocate later workflow tasks. Across six
+% scientific workflows, it improves held-out upper-tail safety and
+% runtime-weighted memory efficiency while exposing higher reservation cost and
+% nonuniform point accuracy. At equal budgets, fixed gates find risky and
+% high-information tasks more efficiently than random sampling. Live Bowtie2
+% closes the cold-run, persistence, retraining, and fresh-rerun loop, while the
+% Sizey comparison quantifies the safety--capacity tradeoff. The results support
+% completed-task consumption as a useful allocation signal when continuous full
+% auditing is too costly.
+
+\toolname demonstrates that workflow memory allocation is governed by the granularity of available evidence, not model selection. Peak memory anomalies reside in heavy tails driven by actual runtime data consumption, which cannot be inferred from static prelaunch metadata. When continuous observation incurs a system overhead, resource allocation 
+%becomes an economic optimization problem where profiling budgets 
+must target areas of highest predictive uncertainty rather than uniform random sampling. Our results~\cite{campArtifact} confirm this framework pays: selective auditing captures the tail safety of full instrumentation at a fraction of the performance cost, relying on structured historical empirical evidence to safely reduce cluster over-provisioning at scale.

@@ -1,0 +1,96 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{graphicx}
+\graphicspath{ {./Figures/} }
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{algorithm}
+\usepackage{tabularx}
+\usepackage{algorithm}
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\graphicspath{ {./Figures/} }
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[caption=false,font=footnotesize]{subfig}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newcommand{\TM}[1]{\textcolor{red}{{#1}}}
+\newcommand{\BP}[1]{\textcolor{blue}{{#1}}}
+
+\newcommand{\toolname}{{\texttt{CAMP}}\xspace}
+
+\begin{document}
+
+\title{CAMP: Consumption-Aware Memory Prediction for Scientific Workflows}
+
+\author{
+\IEEEauthorblockN{Nagarjuna Chowdary Kandimalla, Bhanu Prakash Vangala, and Tanu Malik}
+\IEEEauthorblockA{
+\textit{Department of Electrical Engineering and Computer Science}\\
+\textit{University of Missouri}\\
+Columbia, MO 65211, USA\\
+\{nkmh5@umsystem.edu, bv3hz@missouri.edu, tanu@missouri.edu\}\\
+}}
+
+
+% \author{
+% \IEEEauthorblockN{
+%  \IEEEauthorrefmark{1},
+%  \IEEEauthorrefmark{2},
+%  \IEEEauthorrefmark{3},
+%  \IEEEauthorrefmark{3},
+%  Tanu Malik\IEEEauthorrefmark{1}}\\
+
+% \IEEEauthorblockA{
+% \textit{\IEEEauthorrefmark{1}University of Missouri, Columbia, MO, USA;}
+% \textit{\IEEEauthorrefmark{2}DePaul University, Chicago, IL, USA;}\\
+% \textit{\IEEEauthorrefmark{3}University of Notre Dame, Notre Dame, IN, USA;}\\
+% \text{tay2f, tanu@missouri.edu},
+% \text{raza.ahmad@depaul.edu},
+% \text{mislam5, dthain@nd.edu}
+% }}
+
+\maketitle
+
+\input{source/Original_Submission/0_abstract}
+\input{source/Original_Submission/1_introduction}
+\input{source/Original_Submission/2_problem-and-running-example}
+\input{source/Original_Submission/3_camp_design}
+\input{source/Original_Submission/4_experimental_method}
+\input{source/Original_Submission/5_results}
+\input{source/Original_Submission/6_related-work}
+\input{source/Original_Submission/7_conclusion}
+
+
+\small
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

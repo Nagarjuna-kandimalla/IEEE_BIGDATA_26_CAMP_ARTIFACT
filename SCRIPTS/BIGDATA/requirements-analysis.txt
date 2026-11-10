@@ -1,0 +1,5 @@
+# Analysis-only environment; tested with Python 3.13 during packaging.
+# Requires Python >=3.10. Historical training environments have separate pins.
+numpy==2.2.2
+pandas==2.2.3
+matplotlib==3.10.0

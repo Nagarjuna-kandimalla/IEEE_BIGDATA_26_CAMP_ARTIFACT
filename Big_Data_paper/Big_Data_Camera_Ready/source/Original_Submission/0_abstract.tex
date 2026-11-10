@@ -1,0 +1,33 @@
+\begin{abstract}
+% Workflow schedulers must request memory before a task runs. The bytes staged
+% as task inputs are available, but they can differ substantially
+% from the bytes the program actually consumes through explicit reads and
+% memory-mapped page faults. We present Consumption-Aware Memory Prediction
+% (\toolname), a feedback loop that selectively audits running tasks with eBPF,
+% stores their measured consumed data, and uses only completed observations to
+% allocate later tasks. On 33,516 task records from six workflows, we
+% test memory allocation first without and then with summaries of data consumed
+% by earlier audited tasks and predicted consumption. On 5,026 test tasks, adding consumed-data history
+% reduces predicted out-of-memory events by 64.37\%,
+% reduces runtime-weighted wastage by 37.18\%, and increases total requested
+% memory by 31.50\%. A fixed three-gate policy targets allocation risk,
+% consumed-data information, and discovery. At equal audit counts, it finds underallocated
+% tasks reliably better than random from 20--50\% budgets. When older
+% consumed-data measurements exist, it also finds more tasks worth re-auditing
+% than random from 10--50\% budgets. A live Bowtie2 case study completes the
+% cold-run, persist, retrain, and fresh-rerun loop. The warm run reduces
+% requested memory by 71.96\% while retaining 99.78\% 
+% first-attempt coverage. In a separate 21,337-task comparison with Sizey,
+% \toolname reduces underallocations by 92.02\% and median absolute percentage
+% error by 40.31\%, at the cost of higher memory requests.
+% These results show that data consumed by completed tasks is a useful
+% allocation signal, while also quantifying its memory cost and the present
+% limits of selective auditing.
+
+Distributed scientific workflow tasks exhibit significant variation in memory consumption, making accurate peak memory estimation critical for resource management and avoiding out-of-memory (OOM) failures. Existing workload schedulers rely on static features like file sizes or tool names, which fail to capture non-linear memory scaling. We present Consumption-Aware Memory Prediction (\toolname), a closed-loop framework that utilizes fine-grained, consumption-level provenance—the exact number of bytes a task reads—measured dynamically via eBPF kernel probes. To minimize tracing overhead across parallel task executions at scale, we develop an active-learning-based, multi-gate selective auditing policy that samples only the most informative workflow tasks for model retraining. We evaluate \toolname on thousands of production-scale bioinformatics workflow records executed under Slurm. Compared to size-based scheduling baselines, incorporating dynamic data-consumption features reduces prediction median absolute percentage error by up to 40.31\%. Furthermore, \toolname successfully reduces predicted OOM events by 64.37\% while slashing runtime-weighted memory wastage by 37.18\%. Our selective auditing framework consistently outperforms random sampling across tight profiling budgets, proving that kernel-level consumption data provides a highly scalable and practical feedback signal for high-performance workflow resource allocation.
+A live Bowtie2 cold-to-warm evaluation reduces requested memory by 71.96\% while retaining 99.78\% first-attempt coverage.
+\end{abstract}
+
+\begin{IEEEkeywords}
+scientific workflows, memory prediction, eBPF, selective auditing, Slurm
+\end{IEEEkeywords}

@@ -1,0 +1,96 @@
+\section{Introduction}
+\label{sec:Introduction}
+Scientific workflows execute many tasks whose memory requirements vary
+with their inputs and processing behavior. Workflow engines must request
+memory before these tasks run. An insufficient reservation can cause an
+out-of-memory (OOM) failure and a retry; an excessive reservation occupies
+capacity that could serve other tasks. Predictors based on task metadata
+and completed executions seek to balance these
+costs~\cite{witt2019feedback,lehmann2024ponder,bader2024sizey}. Their practical
+value depends on both allocation safety and the resources reserved to
+achieve it.
+
+Prelaunch information only partially describes memory demand. A task may
+read a small fraction of a large staged index, or access file-backed data
+through memory-mapped page faults rather than explicit read calls.
+Conversely, a streaming task may process many bytes while retaining little
+data in memory. Consumption measurements therefore provide contextual
+evidence rather than a direct measure of peak resident memory. The pending
+task's consumption is also unavailable at allocation time; only completed
+observations can inform its request.
+
+Our prior WORKS paper introduced Consumption-Aware Memory Prediction
+(\toolname)~\cite{camp2026works}. It combines static task features and
+historical peak memory with consumption measurements from audited tasks.
+An auxiliary model predicts consumption before launch; quantile models
+and residual calibration then produce a memory request. Task-attributed
+eBPF measurements and completed execution outcomes supply feedback for
+later allocations. The present paper builds on this architecture to
+study a practical deployment question: whether consumption feedback can
+reduce wasted memory while maintaining reliable execution as workflows
+encounter previously unseen inputs.
+
+The earlier CAMP study compares prediction with and without consumption
+features and evaluates Sizey, selected ablations, and selective-auditing
+results~\cite{camp2026works}. Existing deployment results in the CAMP
+artifact include a live Bowtie2 cold-to-warm evaluation~\cite{campArtifact}.
+Across 6,000
+logical tasks per run, total requested memory falls by 71.96\% in the warm
+run, with initial allocations covering recorded peak memory for 99.78\%
+of tasks. This allocation coverage is distinct from execution success.
+These results establish the feasibility of using accumulated history on
+repeated inputs. Assessing the value and cost of that feedback, and its
+behavior on unseen inputs, requires additional controlled comparisons.
+
+Three considerations guide this evaluation. First, the value of
+consumption feedback depends on both measurement and prediction. Explicit
+reads and file-backed page-fault activity capture different access behavior;
+historical consumption and predicted consumption supply different model
+inputs. Separating these effects requires fixed comparison conditions.
+Auditing also incurs execution cost, while its observations can inform only
+later tasks. Selecting informative tasks is therefore insufficient by
+itself: the resulting allocation savings must be considered alongside the
+cost of collecting their measurements.
+
+Second, the benefit must be assessed against alternative predictors.
+A probabilistic predictor such as NGBoost~\cite{duan2020ngboost} provides an
+alternative to CAMP's quantile models. This comparison requires coverage
+and reservation cost to be assessed together, since fewer underallocations
+may result from larger requests. Development-only tuning and a common
+prelaunch information boundary are necessary for meaningful comparisons.
+
+Third, repeated execution and adaptation to new inputs test different
+properties. A frozen model and history assess what prior observations
+already support. Online updating additionally incorporates outcomes from
+the new executions. Comparing these modes from the same initial state
+on the same unseen inputs provides a controlled test of adaptation.
+In live execution, allocation coverage must be accompanied by observed
+failures and retries, since a request below recorded peak memory does not
+by itself establish an OOM event.
+
+Our evaluation addresses three aspects of practical memory allocation:
+\begin{itemize}
+\item \emph{Measurement and features:} eBPF task filtering and Nextflow
+integration, explicit reads alone versus reads with file-backed page-fault
+activity, and four feature variants that add historical consumption,
+predicted consumption, or both to static features and memory history;
+\item \emph{Allocation benefit and cost:} downstream allocations under
+selective auditing, estimated memory-time savings relative to auditing
+overhead, and comparisons with probabilistic allocators at
+comparable coverage; and
+\item \emph{Online deployment and adaptation:} the existing Bowtie2
+feedback loop and a controlled evaluation protocol for frozen versus
+online-updated allocation on previously unseen inputs.
+\end{itemize}
+% New baseline and unseen-input results remain pending; this introduction
+% describes the evaluation scope and protocol without inventing outcomes.
+CAMP's architecture and previously reported results remain prior work.
+The extension examines when its additional information is useful and
+whether the allocation benefit justifies the measurement cost.
+
+Section~\ref{sec:problem} states the allocation problem and information
+constraints. Section~\ref{sec:design} summarizes CAMP and its relationship
+to WORKS. Sections~\ref{sec:experiments} and~\ref{sec:results} describe the
+experimental methods and results, followed by related work
+(Section~\ref{sec:related}) and conclusions
+(Section~\ref{sec:conclusion}).

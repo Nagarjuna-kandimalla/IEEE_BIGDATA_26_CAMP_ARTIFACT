@@ -1,0 +1,473 @@
+{
+  "source_sha256": {
+    "Reviewer_Feedbacks/chat_ablation/results/route_analysis/route_stratified_metrics.csv": "0df6733b0fb2664442ab8f6530eacf0e9eceb61a44065383229ddf728b62f30a",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_final_global_base/task_predictions.tsv": "79653c2e79f8695dcf148f56d94b634343c867212c75fcdcd9da220787924b3e",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_plus_ch_final_global_base/task_predictions.tsv": "456a2acc00ca75017e78d1ed43ee042cb5410949c6e0b45095715b7eec29f0f9",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_plus_chat_final_global_base/task_predictions.tsv": "13916690a15f22068ee732744423144f3bc4a4c5b09adc6fe9ee19354e28410b",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_plus_c_final_global_base/task_predictions.tsv": "79c5c4bb1da79f53c3085df4b163f9e5f16d999a2bfb8e4eced95b42c1d3c5dd",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p/task_predictions.tsv": "717ed527a1f35301e3dc5b110a1c9da176fb1f82b04c83d7eb7a969ac18c2fb7",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_plus_ch/task_predictions.tsv": "c578024b7ea18698b9044cfc338a9857d091d5eb3010679972d89c1433103b5a",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_plus_chat/task_predictions.tsv": "8ad6cb323072895747b9ddbe858eccbd3d6607a5dc4636fc28f08043f2dc609c",
+    "Reviewer_Feedbacks/chat_ablation/reference_predictions/seed_1996/a_plus_p_plus_c/task_predictions.tsv": "6776d32c2b6f887e7dfce712740271298fd80444fbab4cea4852f1b3469c5ccf",
+    "Reviewer_Feedbacks/chat_ablation/results/route_analysis/paper_endpoint_reproduction.csv": "b31dc925667660fd0ab4f7ecaa5a2ce5bdaacf2a115f3f67fca23008b458e37a",
+    "Reviewer_Feedbacks/chat_ablation/published_reference/a_plus_p_task_predictions.tsv.gz": "c5d6f807fee6a4fe4e38162c206fe44d3057b0bfea19c29f0387cd14ce659e42",
+    "Reviewer_Feedbacks/chat_ablation/published_reference/a_plus_p_plus_c_task_predictions.tsv.gz": "dbf5dadaefea139c537f874a6b2207d083529b8d032aafcc6d62da94e15c0f69",
+    "Reviewer_Feedbacks/W3/results/paper_native_metrics.csv": "90177588c8d2ad02ccfeab2ec5005f6e1c4ee7b40a9045c07798969685b68f11",
+    "Reviewer_Feedbacks/W3/runs/read/seed_1996/task_predictions.tsv.gz": "e58a45733eb4d293ee33fcdb44fdeabc6300052370344e540a9d4fd17ad7c9a6",
+    "Reviewer_Feedbacks/W3/runs/read_mmap/seed_1996/task_predictions.tsv.gz": "11041dbeff39daabe01b3d5375dd69bc9958009a08bbf1793de1e3935f49d167",
+    "Reviewer_Feedbacks/W2/results/downstream_allocation/per_repetition_metrics.tsv": "af64bd6e7d947aefd249a2ee4b3bbf1d8f1bb70fd679a783ec13cfb3864784ce",
+    "Reviewer_Feedbacks/W2/results/downstream_allocation/paired_summary.tsv": "07e77c4e44ac240fcd65919f8b12568fef138a7b094340117528e1cbaf785dd7",
+    "Reviewer_Feedbacks/W5/inputs/task_level_full_ebpf_net_benefit.csv": "c70ab450d7f7e5feeea205a8129475a219bbe24fe63329536dbe79d1303cf1e8",
+    "Reviewer_Feedbacks/W5/inputs/audit_selections.tsv.gz": "fc16db151258aa93c49bd24a3e1194b9941f8cd7e13c59cbd799b0b91dd6d7a1",
+    "Reviewer_Feedbacks/W5/results/budget_summary.csv": "36c7fa997f1120c1ef63fa82d7db0d8c76ac5440a05bbdb66d745dfe3856e253",
+    "RESULTS/RQ5/csv/bowtie2_cold_task_instances.tsv.gz": "0fc92d92db85fbc244fc5b6b3fc1bdd71605df8922641271a2e09c1b87cef84b",
+    "RESULTS/RQ5/csv/bowtie2_cold_attempts.csv.gz": "23d6a0fee8be06e8d795d09d994c5df7f60092b3e626f610de91d8e87012f820",
+    "RESULTS/RQ5/csv/bowtie2_warm_task_instances.tsv.gz": "c7458fcda6bde477d9fe3ef70fd5abb5e30499e0dde95e486a073c835ad3b897",
+    "RESULTS/RQ5/csv/bowtie2_warm_attempts.csv.gz": "a10bfc8b2ccc0f205f27f062ffc355d3deea6165a4eac907c83d7179d374dbf5"
+  },
+  "verified_route_metrics": [
+    {
+      "route": "global",
+      "variant": "A+P",
+      "rows": 5026,
+      "q50_mdape_percent": 21.749952267615047,
+      "spearman": 0.8429513767328023,
+      "q99_pinball_mib": 28.93603515099145,
+      "underallocations": 85,
+      "coverage_percent": 98.30879426979703,
+      "total_request_gib": 26075.2578125
+    },
+    {
+      "route": "global",
+      "variant": "A+P+CH",
+      "rows": 5026,
+      "q50_mdape_percent": 21.31985887120016,
+      "spearman": 0.8790898590731118,
+      "q99_pinball_mib": 28.658192629214877,
+      "underallocations": 81,
+      "coverage_percent": 98.38838042180662,
+      "total_request_gib": 26343.2890625
+    },
+    {
+      "route": "global",
+      "variant": "A+P+CHAT",
+      "rows": 5026,
+      "q50_mdape_percent": 24.41080179307337,
+      "spearman": 0.8356768989387761,
+      "q99_pinball_mib": 27.948199887929405,
+      "underallocations": 105,
+      "coverage_percent": 97.9108635097493,
+      "total_request_gib": 26453.2451171875
+    },
+    {
+      "route": "global",
+      "variant": "A+P+CH+CHAT",
+      "rows": 5026,
+      "q50_mdape_percent": 26.512533527515085,
+      "spearman": 0.8773146222877793,
+      "q99_pinball_mib": 33.41271618910099,
+      "underallocations": 74,
+      "coverage_percent": 98.52765618782333,
+      "total_request_gib": 26612.0771484375
+    },
+    {
+      "route": "process_tail",
+      "variant": "A+P",
+      "rows": 5026,
+      "q50_mdape_percent": 21.749952267615047,
+      "spearman": 0.8429513767328023,
+      "q99_pinball_mib": 210.38206255402417,
+      "underallocations": 24,
+      "coverage_percent": 99.52248308794267,
+      "total_request_gib": 603466.8310546875
+    },
+    {
+      "route": "process_tail",
+      "variant": "A+P+CH",
+      "rows": 5026,
+      "q50_mdape_percent": 21.31985887120016,
+      "spearman": 0.8790898590731118,
+      "q99_pinball_mib": 230.9375032174536,
+      "underallocations": 46,
+      "coverage_percent": 99.08475925189018,
+      "total_request_gib": 80852.560546875
+    },
+    {
+      "route": "process_tail",
+      "variant": "A+P+CHAT",
+      "rows": 5026,
+      "q50_mdape_percent": 24.41080179307337,
+      "spearman": 0.8356768989387761,
+      "q99_pinball_mib": 163.24630217377154,
+      "underallocations": 52,
+      "coverage_percent": 98.96538002387584,
+      "total_request_gib": 123957.7890625
+    },
+    {
+      "route": "process_tail",
+      "variant": "A+P+CH+CHAT",
+      "rows": 5026,
+      "q50_mdape_percent": 26.512533527515085,
+      "spearman": 0.8773146222877793,
+      "q99_pinball_mib": 198.9701753970919,
+      "underallocations": 30,
+      "coverage_percent": 99.40310385992838,
+      "total_request_gib": 34271.486328125
+    }
+  ],
+  "published_and_reproduced_endpoints": [
+    {
+      "method": "Access (A+P)",
+      "source": "paper_frozen",
+      "rows": 5026,
+      "q50_mdape_percent": 21.749952267615047,
+      "spearman": 0.8429513767328023,
+      "q99_pinball_mib": 28.93603515099145,
+      "underallocations": 87,
+      "coverage_percent": 98.26900119379228,
+      "total_request_gib": 26067.44921875
+    },
+    {
+      "method": "Access (A+P)",
+      "source": "elastic_reproduction",
+      "rows": 5026,
+      "q50_mdape_percent": 21.749952267615047,
+      "spearman": 0.8429513767328023,
+      "q99_pinball_mib": 28.93603515099145,
+      "underallocations": 85,
+      "coverage_percent": 98.30879426979703,
+      "total_request_gib": 26075.2578125
+    },
+    {
+      "method": "Full CAMP",
+      "source": "paper_frozen",
+      "rows": 5026,
+      "q50_mdape_percent": 26.51253352751508,
+      "spearman": 0.8773146222877793,
+      "q99_pinball_mib": 198.9701753970919,
+      "underallocations": 31,
+      "coverage_percent": 99.38320732192598,
+      "total_request_gib": 34277.5546875
+    },
+    {
+      "method": "Full CAMP",
+      "source": "elastic_reproduction",
+      "rows": 5026,
+      "q50_mdape_percent": 26.512533527515085,
+      "spearman": 0.8773146222877793,
+      "q99_pinball_mib": 198.9701753970919,
+      "underallocations": 30,
+      "coverage_percent": 99.40310385992838,
+      "total_request_gib": 34271.486328125
+    }
+  ],
+  "mmap": [
+    {
+      "signal": "read",
+      "seed": 1996,
+      "tasks": 5026,
+      "underallocations": 32,
+      "requested_gib": 41852.63671875,
+      "mdape_pct": 22.040103494739515,
+      "prediction_sha256": "e58a45733eb4d293ee33fcdb44fdeabc6300052370344e540a9d4fd17ad7c9a6"
+    },
+    {
+      "signal": "read_mmap",
+      "seed": 1996,
+      "tasks": 5026,
+      "underallocations": 30,
+      "requested_gib": 34271.486328125,
+      "mdape_pct": 26.512533527515085,
+      "prediction_sha256": "11041dbeff39daabe01b3d5375dd69bc9958009a08bbf1793de1e3935f49d167"
+    }
+  ],
+  "downstream_native_means": [
+    {
+      "budget": 0.05,
+      "method": "random",
+      "underallocations": 294.0,
+      "requested_gib": 54660.1794921875
+    },
+    {
+      "budget": 0.05,
+      "method": "selective",
+      "underallocations": 273.0,
+      "requested_gib": 62237.45703125
+    },
+    {
+      "budget": 0.1,
+      "method": "random",
+      "underallocations": 276.2,
+      "requested_gib": 53907.3080078125
+    },
+    {
+      "budget": 0.1,
+      "method": "selective",
+      "underallocations": 282.2,
+      "requested_gib": 58715.176953125
+    },
+    {
+      "budget": 0.2,
+      "method": "random",
+      "underallocations": 305.8,
+      "requested_gib": 53123.351171875
+    },
+    {
+      "budget": 0.2,
+      "method": "selective",
+      "underallocations": 265.8,
+      "requested_gib": 54400.1021484375
+    },
+    {
+      "budget": 0.3,
+      "method": "random",
+      "underallocations": 309.2,
+      "requested_gib": 53658.8
+    },
+    {
+      "budget": 0.3,
+      "method": "selective",
+      "underallocations": 279.6,
+      "requested_gib": 55429.8060546875
+    },
+    {
+      "budget": 0.5,
+      "method": "random",
+      "underallocations": 284.8,
+      "requested_gib": 53964.9107421875
+    },
+    {
+      "budget": 0.5,
+      "method": "selective",
+      "underallocations": 299.6,
+      "requested_gib": 53519.722265625
+    }
+  ],
+  "downstream_intervals": [
+    {
+      "cohort": "rq4",
+      "budget": 0.05,
+      "evaluation": "after_first_update",
+      "operating_point": "native",
+      "repetitions": 5,
+      "selective_minus_random_rate": -0.0012304447178766,
+      "ci_low": -0.0034452452100544,
+      "ci_high": 0.0003632741548016,
+      "selective_rate": 0.0159957813323958,
+      "random_rate": 0.0172262260502724
+    },
+    {
+      "cohort": "rq4",
+      "budget": 0.1,
+      "evaluation": "after_first_update",
+      "operating_point": "native",
+      "repetitions": 5,
+      "selective_minus_random_rate": 0.000351555633679,
+      "ci_low": -0.0008085779574617,
+      "ci_high": 0.0015116892248198,
+      "selective_rate": 0.016534833304037,
+      "random_rate": 0.016183277670358
+    },
+    {
+      "cohort": "rq4",
+      "budget": 0.2,
+      "evaluation": "after_first_update",
+      "operating_point": "native",
+      "repetitions": 5,
+      "selective_minus_random_rate": -0.0023437042245268,
+      "ci_low": -0.0041600749985351,
+      "ci_high": 7.031112673580551e-05,
+      "selective_rate": 0.015573914571981,
+      "random_rate": 0.0179176187965078
+    },
+    {
+      "cohort": "rq4",
+      "budget": 0.3,
+      "evaluation": "after_first_update",
+      "operating_point": "native",
+      "repetitions": 5,
+      "selective_minus_random_rate": -0.0017343411261498,
+      "ci_low": -0.0040311712661862,
+      "ci_high": 0.0017226226050272,
+      "selective_rate": 0.0163824925294427,
+      "random_rate": 0.0181168336555926
+    },
+    {
+      "cohort": "rq4",
+      "budget": 0.5,
+      "evaluation": "after_first_update",
+      "operating_point": "native",
+      "repetitions": 5,
+      "selective_minus_random_rate": 0.0008671705630749,
+      "ci_low": -0.0010195113376691,
+      "ci_high": 0.0026483857737153,
+      "selective_rate": 0.0175543446417062,
+      "random_rate": 0.0166871740786312
+    }
+  ],
+  "audit_accounting": [
+    {
+      "budget_percent": 5,
+      "audited_test_tasks": 251,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 5.998912283427291,
+      "paper_mean_net_gib_hours": 17.596647824877984,
+      "net_seed_mean_ci95_low": 17.35459133505333,
+      "net_seed_mean_ci95_high": 17.838704314702635,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 10,
+      "audited_test_tasks": 503,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 12.434068109559227,
+      "paper_mean_net_gib_hours": 11.16149199874605,
+      "net_seed_mean_ci95_low": 10.646024027566035,
+      "net_seed_mean_ci95_high": 11.67695996992606,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 15,
+      "audited_test_tasks": 754,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 17.68263040836808,
+      "paper_mean_net_gib_hours": 5.912929699937193,
+      "net_seed_mean_ci95_low": 5.6034743842281545,
+      "net_seed_mean_ci95_high": 6.151672274010869,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 20,
+      "audited_test_tasks": 1005,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 24.02451512208308,
+      "paper_mean_net_gib_hours": -0.4289550137778029,
+      "net_seed_mean_ci95_low": -1.0773848993790949,
+      "net_seed_mean_ci95_high": 0.3458939330964922,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 25,
+      "audited_test_tasks": 1257,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 29.682285031274965,
+      "paper_mean_net_gib_hours": -6.086724922969689,
+      "net_seed_mean_ci95_low": -6.752971968418419,
+      "net_seed_mean_ci95_high": -5.42047787752096,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 30,
+      "audited_test_tasks": 1508,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 35.85504430255371,
+      "paper_mean_net_gib_hours": -12.259484194248431,
+      "net_seed_mean_ci95_low": -13.04211398858003,
+      "net_seed_mean_ci95_high": -11.476854399916837,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 50,
+      "audited_test_tasks": 2513,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 66.53387982134274,
+      "paper_mean_net_gib_hours": -42.93831971303746,
+      "net_seed_mean_ci95_low": -43.88380253991305,
+      "net_seed_mean_ci95_high": -41.81436771298082,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    },
+    {
+      "budget_percent": 100,
+      "audited_test_tasks": 5026,
+      "sampling_seeds": 5,
+      "paper_test_underallocations": 31,
+      "paper_test_coverage_percent": 99.38320732192598,
+      "paper_camp_unused_gib_hours": 39.87379593095025,
+      "paper_allocation_savings_gib_hours": 23.59556010830527,
+      "paper_mean_audit_cost_gib_hours": 139.68000828977927,
+      "paper_mean_net_gib_hours": -116.08444818147402,
+      "net_seed_mean_ci95_low": -116.08444818147402,
+      "net_seed_mean_ci95_high": -116.08444818147402,
+      "missing_audit_runtimes": 0,
+      "missing_savings_runtimes": 449
+    }
+  ],
+  "bowtie": {
+    "cold": {
+      "tasks": 6000,
+      "request_gib": 898.3857421875,
+      "peak_gib": 238.4989013671875,
+      "unused_gibh": 23.954478335062667,
+      "below_peak": 4,
+      "coverage": 99.93333333333332,
+      "success": 6000,
+      "first_oom": 0,
+      "attempts": 6016,
+      "retries": 16
+    },
+    "warm": {
+      "tasks": 6000,
+      "request_gib": 251.9267578125,
+      "peak_gib": 238.81898880004883,
+      "unused_gibh": 0.017716428777906627,
+      "below_peak": 13,
+      "coverage": 99.78333333333333,
+      "success": 6000,
+      "first_oom": 0,
+      "attempts": 6015,
+      "retries": 15
+    }
+  },
+  "bowtie_margin_percent": [
+    [
+      0.06666666666666667,
+      55.81666666666667,
+      19.433333333333334,
+      7.95,
+      16.733333333333334
+    ],
+    [
+      0.21666666666666665,
+      66.01666666666667,
+      26.716666666666665,
+      6.783333333333333,
+      0.26666666666666666
+    ]
+  ],
+  "scope": "Reanalysis/plotting of retained records; no new model training or workflow execution."
+}

@@ -1,0 +1,64 @@
+\section{Problem Formulation}
+\label{sec:problem}
+We retain the prelaunch allocation problem introduced in
+WORKS~\cite{camp2026works}. A workflow comprises named processes, each of
+which instantiates tasks for different samples or input partitions.
+Before task $t$ starts, the allocator issues an initial memory request
+$\hat y_t$. Its static feature vector $\mathbf{s}_t$ contains workflow and
+process metadata, software and system context, resource settings, and
+staged input size. Execution subsequently reveals peak resident set size
+(RSS), $y_t$, and duration $d_t$. If the task is audited, it also supplies a
+consumption measurement $c_t$. Neither $y_t$ nor $c_t$ is available for that
+task's initial allocation.
+
+Let $\mathcal{P}(t)$ contain tasks whose outcomes have been recorded before
+the allocation decision for $t$. Peak-memory history $\mathbf{h}_{m,t}$
+summarizes compatible observations from this set; consumption history
+$\mathbf{h}_{c,t}$ uses its audited subset. The prelaunch decisions are
+\begin{equation}
+\hat y_t=f(\mathbf{s}_t,\mathbf{h}_{m,t},\mathbf{h}_{c,t}),
+\qquad q_t\in\{0,1\},
+\label{eq:allocation_problem}
+\end{equation}
+where $q_t=1$ selects auditing. A budget $B\in(0,1]$ limits the audited
+fraction over the specified evaluation horizon. Auditing task $t$ cannot
+improve the request already issued to it; its measurements can inform
+only later decisions. In live execution, availability follows completion
+and ingestion times, rather than launch order. Offline evaluation must
+state the history construction and outcome-revelation protocol used to
+approximate this constraint.
+
+The allocation objective is to limit underallocation while avoiding
+unnecessary reservations. For $N$ evaluated tasks, initial-request
+coverage is
+\begin{equation}
+\mathrm{Cov}=\frac{1}{N}\sum_{t=1}^{N}\mathbf{1}[\hat y_t\geq y_t],
+\label{eq:coverage}
+\end{equation}
+where $\mathbf{1}[\cdot]$ is the indicator function. This is the
+\emph{first-attempt coverage} measure used in WORKS: retry increases do not
+enter $\hat y_t$. A request below a recorded peak is an allocation
+diagnostic, not proof of an observed OOM failure. Live studies therefore
+report task completion, failures, and retries separately.
+
+Coverage is considered alongside aggregate requests $\sum_t\hat y_t$ and
+unused memory-time,
+\begin{equation}
+W=\sum_{t\in\mathcal{D}}\max(\hat y_t-y_t,0)\,d_t,
+\label{eq:unused_memory_time}
+\end{equation}
+where $\mathcal{D}$ identifies tasks with valid duration measurements.
+Using memory in GiB and duration in hours gives $W$ in GiB-hours. This
+peak-based measure quantifies reservation above observed peak demand;
+it is not an integral of instantaneous unused RSS. Aggregate requests
+likewise do not represent simultaneous cluster usage. Missing durations
+and retry accounting must be stated rather than treated as measured zero
+cost. When estimating net savings, auditing overhead must be charged in
+compatible units and distinguished from prediction or retraining cost.
+
+For unseen-input evaluation, a frozen condition holds the model, history,
+and calibration state fixed. An online condition starts from the same
+state and incorporates eligible completed outcomes. This comparison
+separates allocation from existing knowledge from adaptation during the
+new workload. Both conditions exclude the current task's outcomes from
+its prelaunch decision.

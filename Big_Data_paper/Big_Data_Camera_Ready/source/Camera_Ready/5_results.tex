@@ -1,0 +1,103 @@
+\section{Results}
+\label{sec:results}
+The following results distinguish published WORKS endpoints from further
+analysis of retained measurements. New baseline and unseen-input results
+remain pending.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{\campReadyPath result_assets/bowtie_margins.pdf}
+\caption{Initial allocation margins in the retained Bowtie2 runs. The warm run concentrates requests near recorded peaks; repeated inputs do not test unseen-input adaptation.}
+\label{fig:bowtie}
+\end{figure}
+
+\subsection{Memory-mapped access and feature contributions}
+Table~\ref{tab:mmap} details the read-only versus Read + mmap comparison
+briefly reported in WORKS~\cite{camp2026works}. Adding the mmap signal
+reduces underallocations from 32 to 30 and total requests by 18.11\%.
+Median prediction error nevertheless increases from 22.04\% to 26.51\%.
+Thus, a better reservation tradeoff need not coincide with lower median
+prediction error; the two-task difference alone is not evidence of a
+robust advantage across datasets or random splits.
+
+\begin{table}[!t]
+\caption{Mmap ablation on the same 5,026 tasks. Native development-selected requests; no request scaling.}
+\label{tab:mmap}
+\centering\small
+\input{\campReadyPath result_assets/mmap_table}
+\end{table}
+
+WORKS reports 87 underallocations for A+P and 31 for CAMP, with total
+requests of 26,067.45 and 34,277.55~GiB~\cite{camp2026works}. The retained
+reproduction gives 85 and 30; these are distinct request realizations,
+not replacements for the published numbers. Table~\ref{tab:features}
+expands the four feature combinations using configuration controls.
+Under global prediction, full CAMP gives 74 underallocations versus 85
+for A+P, with 2.06\% more requested memory. Under process-tail prediction,
+A+P attains fewer underallocations (24 versus 30) but requests
+603,467 versus 34,271~GiB. The full feature set therefore does not dominate
+every safety metric. Relative to consumption history alone under
+process-tail prediction, adding $\hat c$ reduces underallocations from 46
+to 30 and requests by 57.61\%, while MdAPE increases from 21.32\% to
+26.51\%. These comparisons support evaluating feature value jointly with
+reservation cost.
+
+\begin{table}[!t]
+\caption{Four feature variants with configuration held fixed (5,026 tasks). U: underallocation count; R: aggregate requests in thousands of GiB.}
+\label{tab:features}
+\centering\small
+\input{\campReadyPath result_assets/feature_table}
+\end{table}
+
+\subsection{Selective auditing and estimated net saving}
+At the primary 20\% budget, the retained downstream replay gives 265.8
+versus 305.8 mean underallocations for selective and random auditing:
+13.1\% fewer, with 2.4\% more requested memory. This preliminary result
+was also summarized in WORKS~\cite{camp2026works}. Figure~\ref{fig:audit}(a)
+shows that the direction varies with budget. At 20\%, the paired 95\%
+interval for the rate difference is $[-0.416,0.007]$ percentage points,
+which includes zero. The five sampling repetitions do not establish
+uniform improvement or robustness across model seeds.
+
+
+
+The fixed-allocation saving is 23.596~GiB-hours before audit cost.
+Figure~\ref{fig:audit}(b) gives net estimates of 17.597, 11.161, and
+5.913~GiB-hours at 5, 10, and 15\% budgets. At 20\%, the estimate is
+$-0.429$ with interval $[-1.077,0.346]$~GiB-hours. At 25, 30, 50, and
+100\%, net estimates are $-6.087$, $-12.259$, $-42.938$, and
+$-116.084$~GiB-hours. These values identify when the fixed saving covers
+measured audit cost; they are not end-to-end deployment savings.
+
+\subsection{Existing Bowtie2 online deployment}
+Table~\ref{tab:bowtie} reports the retained live runs. Warm execution
+reduces aggregate initial requests by 71.96\%, from 898.39 to
+251.93~GiB, while observed peak totals remain approximately 239~GiB.
+Unused memory-time decreases from 23.954 to 0.018~GiB-hours. This
+logical-task measure excludes the cost of failed attempts and the
+separately measured auditing and learning overheads.
+
+\begin{table}[!t]
+\caption{Existing Bowtie2 cold-to-warm deployment on repeated inputs. Each run contains 6,000 logical tasks across seven processes.}
+\label{tab:bowtie}
+\centering\small
+\input{\campReadyPath result_assets/bowtie_table}
+\end{table}
+
+
+
+Figure~\ref{fig:bowtie} shows the proportion allocated between the peak
+and 10\% above it increasing from 75.25\% to 92.73\%. Requests below
+recorded peak increase from four to thirteen, giving warm coverage of
+99.78\%. All 6,000 tasks eventually complete in both runs, with 16 and
+15 retries. The records flag no first-attempt OOMs; below-peak requests
+must therefore not be relabeled observed OOM failures. This experiment
+supports feedback reuse on repeated inputs, not superiority over an
+unmeasured baseline or transfer to unseen data.
+
+\subsection{Remaining evaluation}
+Results for NGBoost and the
+unseen-input frozen-versus-online comparison are \textbf{?} (pending).
+Ponder is an optional additional comparator. Prediction latency and
+retraining resource costs also remain \textbf{?}; no claim of total
+system-level net benefit is made from the audit-only accounting.

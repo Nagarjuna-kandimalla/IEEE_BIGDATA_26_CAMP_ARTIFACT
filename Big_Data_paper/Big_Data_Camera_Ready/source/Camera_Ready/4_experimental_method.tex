@@ -1,0 +1,70 @@
+\section{Experimental Method}
+\label{sec:experiments}
+\subsection{Populations and comparison conditions}
+We analyze retained predictions and execution records in the CAMP
+artifact~\cite{campArtifact}; no new workflow execution is implied by
+replotting these measurements. The feature and mmap studies use 33,516
+tasks from GATK, Minimap2, Sarek, Seqinspector, Taxprofiler, and
+Viralmetagenome. The fixed seed-1996 split assigns 28,490 tasks to
+development and 5,026 to evaluation, using chronological ordering within
+each workflow. Four feature views use static information and peak-memory
+history (A+P), add consumption history ($\mathbf{h}_c$), add predicted
+consumption ($\hat c$), or include both (full CAMP).
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\campReadyPath result_assets/audit_tradeoffs.pdf}
+\caption{Two separate auditing studies. (a) Native downstream underallocation-rate difference over 17,067 tasks after the first update; negative values favor selective auditing. Bars are recorded paired 95\% bootstrap intervals. (b) Estimated net saving on 5,026 tasks with published allocations fixed (5--30\% budgets shown); bars are 95\% bootstrap intervals of five seed-level means. Allocation savings in (b) are not caused by the budget choices in (a).}
+\label{fig:audit}
+\end{figure*}
+
+\label{sec:training-calibration}
+The retained LightGBM ensembles and development-selected allocation
+policies are preserved. Table~\ref{tab:features} compares each feature view
+under the same global or process-tail configuration; it is a control for
+feature interpretation, not a new routing-policy sweep. The original
+endpoint comparison uses global A+P and process-tail CAMP. Published
+requests and their retained reproduction are reported separately. The
+mmap study uses paired task identities and peaks; each arm selects its
+own allocation policy on development data, without test-time request
+scaling. MdAPE denotes the median absolute percentage error of the median
+peak prediction, not the error of the final reservation.
+
+\subsection{Selective feedback and audit accounting}
+The downstream replay uses a separate 30,478-task cohort: 9,141 development
+and 21,337 evaluation tasks. Five fixed batches reveal recorded outcomes
+at batch completion. Selective and uniform-random auditing use equal
+per-workflow counts at budgets of 5, 10, 20, 30, and 50\%, with five
+sampling seeds (1996--2000) and fixed model seeds. The primary evaluation
+covers batches 2--5: 17,067 tasks after the first update. This is a batched
+replay, not a reconstruction of live concurrency. Shared initial audited
+history is excluded from incremental audit budgets.
+
+A separate accounting study holds the published 5,026-task allocations
+fixed and charges positive paired auditing overhead:
+\begin{equation}
+\begin{aligned}
+ C_B&=\sum_{t:q_t=1}\hat y_t\max(d_t^{\rm audit}-d_t^{\rm base},0),\\
+ G_B&=(W_{\rm AP}-W_{\rm CAMP})-C_B.
+\end{aligned}
+\label{eq:audit_cost}
+\end{equation}
+Memory and time are converted to GiB and hours. All tasks have paired
+audit timings, but allocation-saving runtimes exist for only 4,577 tasks;
+the 449 missing runtimes retain zero weight in the published saving.
+$G_B$ excludes prediction, retraining, and retry costs and does not estimate
+the allocation improvement caused by each budget. Recorded 95\% intervals
+use paired grouped bootstrap for downstream differences and bootstrap of
+five seed-level means for audit accounting.
+
+\subsection{Live deployment}
+The retained Nextflow/Slurm deployment uses 12 task workers and a thirteenth
+node for control, prediction, and learning, each with 32 vCPUs and about
+256~GB RAM. Bowtie2 processes 38 paired ENA runs through seven workflow
+processes, producing 6,000 logical tasks per execution. The cold run starts
+without Bowtie2 history, updates during execution, and seeds a fresh warm
+execution of the same inputs; Nextflow's task cache is not reused. Both
+runs audit all tasks. Logical-task metrics use initial requests and final
+recorded peaks/runtimes; attempt tables separately retain failures and
+retries. These runs do not compare frozen and online-updated allocation
+on unseen inputs.

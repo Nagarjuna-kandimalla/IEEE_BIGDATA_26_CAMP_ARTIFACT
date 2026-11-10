@@ -1,0 +1,14 @@
+# Preserve byte-exact scientific and upstream-source checksum manifests across OSes.
+# Shell scripts are packaged with LF; Git must not normalize vendored source bytes.
+* -text
+
+*.gz binary
+*.joblib binary
+*.pdf binary
+*.png binary
+*.sqlite binary
+*.db binary
+*.bam binary
+*.bai binary
+*.cram binary
+*.crai binary

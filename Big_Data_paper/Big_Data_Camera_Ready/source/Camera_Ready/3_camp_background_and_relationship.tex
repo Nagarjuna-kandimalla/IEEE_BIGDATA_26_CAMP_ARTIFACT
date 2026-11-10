@@ -1,0 +1,117 @@
+\section{CAMP Background and Relationship to WORKS}
+\label{sec:design}
+CAMP's measurement, prediction, and selective-feedback architecture was
+introduced in WORKS~\cite{camp2026works}. We summarize the existing design
+and its implementation to identify the components examined in this study.
+
+\subsection{Measurement and compatible history}
+\label{sec:history}
+The eBPF tracer is attached to a task launcher and tracks descendants
+through process-fork events. Kernel handlers discard events from
+untracked execution contexts, preventing unrelated tasks on the same node
+from contributing to that task's measurements. For explicit reads, the
+implementation associates descriptors with observed file opens and
+accumulates positive return values from \texttt{read} and \texttt{pread64}.
+These are returned bytes, rather than requested buffer lengths; descriptor
+attribution depends on the file operations observed by the tracer.
+
+A successful \texttt{mmap} call establishes a virtual mapping but does not
+show how much mapped data is accessed. CAMP instead instruments the
+\texttt{filemap\_fault} entry point for file-backed page-fault activity.
+The retained tracer adds 4,096 bytes per attributed event. The resulting
+consumption signal is explicit-read bytes plus this page-fault byte
+estimate. It does not deduplicate pages or certify that each entry event
+completed a successful fault; it is therefore not an exact count of unique
+bytes consumed, physical disk traffic, or resident memory. This distinction
+motivates the read-only versus read-plus-mmap comparison. A task that
+streams data and one that retains an index may have similar consumption
+but different memory peaks.
+
+Completed observations are organized into compatibility scopes.
+$I_0$ and $I_1$ match task-instance/split-group and input identity,
+respectively; $I_2$ selects nearby static-feature signatures; $I_3$ pools
+process history. These scopes preserve workflow, version, and system
+context. $I_4$ broadens to workflow history and $I_5$ to system-compatible
+history. Support thresholds select a usable scope, while summaries from
+multiple scopes remain features. History scopes identify relevant
+observations; prediction-model selection is a separate mechanism.
+
+\subsection{Consumption prediction and memory allocation}
+\label{sec:consumption}
+The Access baseline, denoted A+P in the artifact, uses static features and
+peak-memory history. CAMP adds historical consumption and a prelaunch
+consumption estimate:
+\begin{align}
+\mathbf{x}^{\mathrm{AP}}_t &= [\mathbf{s}_t,\mathbf{h}_{m,t}],\\
+\hat c_t &= g(\mathbf{s}_t,\mathbf{h}_{m,t}),\label{eq:proxy}\\
+\mathbf{x}^{\mathrm{CAMP}}_t
+  &= [\mathbf{s}_t,\mathbf{h}_{m,t},\mathbf{h}_{c,t},\hat c_t].
+\end{align}
+The estimator $g$ learns from audited outcomes. Historical consumption
+$\mathbf{h}_{c,t}$ describes earlier executions, whereas $\hat c_t$ estimates
+the pending task's consumption. The four feature variants retain A+P
+alone, add either signal separately, or include both. In the offline
+training pipeline, cross-fitted proxy predictions supply the training
+feature: each held-out group is predicted by a model fitted without that
+group. Measured current-task consumption is not substituted for this
+prediction.
+
+\label{sec:quantiles}
+LightGBM ensembles estimate peak-memory quantiles at
+$\{0.50,0.90,0.95,0.99,0.995\}$. The process-tail configuration combines a
+global central estimate with workflow--process upper-tail models and a
+global fallback; global-tail configurations also exist in the artifact.
+Feature comparisons must therefore hold the prediction configuration
+fixed or explicitly identify configuration differences. Changing features
+and model selection together cannot isolate the contribution of a feature.
+
+\subsection{Calibration and selective feedback}
+\label{sec:calibration}
+A development-selected policy chooses a base estimate $b_t$ and a residual
+quantile. Hierarchical calibration uses log residuals
+$r_\tau=\log(y_\tau/b_\tau)$ and blends a supported residual scope with a
+broader parent. Residual support determines this scope independently of
+the history-feature scope. The correction $\rho_t$ produces
+\begin{equation}
+\hat y_t=\left\lceil b_t\exp\!\left(\max(0,\rho_t)\right)\right\rceil_{\mathrm{MiB}}.
+\label{eq:final}
+\end{equation}
+The adjustment is one-sided and rounded to whole mebibytes. Cross-fitted
+predictions provide development residuals; subsequently available outcomes
+support online updates. Calibration remains empirical and provides no
+unconditional coverage guarantee on shifted inputs.
+
+\label{sec:gates}
+The selective policy allocates an audit budget using prelaunch risk,
+information, and discovery signals. Peak-memory outcomes can update
+history after completion; consumption outcomes enter only when measured.
+The deployment mechanisms are distinct from this policy: the generic
+Nextflow audit overlay supports process-name filtering and periodic task
+selection, while the retained live Bowtie2 configuration audits every task.
+Thus, the live run does not by itself demonstrate selective-auditing gains.
+
+In the artifact, Nextflow configuration overlays add instrumentation to
+unmodified nf-core workflow sources. A launch wrapper pauses the target,
+attaches the tracer, waits for readiness, and resumes execution. Bowtie2's
+allocation integration additionally defines process-specific memory
+closures that pass task metadata to the prediction service and return
+requests to Nextflow for Slurm submission. Completion hooks record
+outcomes, and an asynchronous learner publishes updated model versions
+for later predictions. The retained launcher requests model updates after
+each 128 eligible outcomes; history ingestion and model retraining are
+separate operations. These additions preserve analytical tool commands
+but require workflow-specific metadata bindings, deployment configuration,
+and Linux hosts with BCC/eBPF support and tracing privileges. They are not
+a transparent allocator for every workflow engine.
+
+\subsection{Prior evidence and extension boundary}
+WORKS already reports the architecture, Access and Sizey comparisons,
+selected feature and mmap ablations, and selective-auditing
+results~\cite{camp2026works}. The retained Bowtie2 runs provide existing
+deployment evidence~\cite{campArtifact}. The present study develops the
+component analysis, examines downstream allocation benefit relative to
+audit cost, introduces probabilistic comparisons, and
+specifies a controlled extension to unseen inputs. Reanalysis of existing
+measurements is distinguished from new experiments. Routing, calibration,
+and compatibility scopes are described as background; separate ablation
+sweeps of these mechanisms are outside the present scope.

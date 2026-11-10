@@ -1,0 +1,98 @@
+{
+  "repository": "https://github.com/CommonWorkflowScheduler/KubernetesScheduler",
+  "commit": "3046e19d5a3a237c5f6c0df4d16f33e643b31828",
+  "files": [
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/Predictor.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/Predictor.java",
+      "sha256": "17d865546b19f409557ce59bc4ec6d3d319809b3b61a50e89478c57534929b24"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/predictor/PonderPredictor.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/predictor/PonderPredictor.java",
+      "sha256": "abd7ae9a76ee0127c634114cc5edb22654b1aeb7809944d57b9c8db96aeade02"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/predictor/LinearPredictor.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/predictor/LinearPredictor.java",
+      "sha256": "96eb9218769454535337b01615a42468242b0e07e279336a70629ded4449b80c"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/predictor/LinearPredictorCustomLoss.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/predictor/LinearPredictorCustomLoss.java",
+      "sha256": "1fddf6a3b0e6dea9a882c6126b53f87808ea4dee3a919ba3428c2769da1639af"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/predictor/loss/UnequalLossFunction.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/predictor/loss/UnequalLossFunction.java",
+      "sha256": "654592ab5ec28660eeb7ca8b3f7ba2789201230ddac3183c117cf609ac4af6a5"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/offset/WeightedVarianceOffset.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/offset/WeightedVarianceOffset.java",
+      "sha256": "6b49902344e0b2b6c5ac43014ab3683b0b8e7f0faccb2f69e86e6fa224724f8c"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/extractor/VariableExtractor.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/extractor/VariableExtractor.java",
+      "sha256": "8d768bd97da9eb1d351cc717576d222a29d1c3936f2485f8ce773fc91a0f59e2"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/extractor/InputExtractor.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/extractor/InputExtractor.java",
+      "sha256": "134011f54c90c7e156d35f9e0125c17a4920b25defa41ff7f5177637f641ee3e"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/extractor/MemoryExtractor.java",
+      "local_path": "upstream/src/main/java/cws/k8s/scheduler/prediction/extractor/MemoryExtractor.java",
+      "sha256": "4606e96c9ee8649b98c6e7a0a8f26674676d689d35ce9362aa2ba93b6b56ef27"
+    },
+    {
+      "upstream_path": "LICENSE",
+      "local_path": "COPYING",
+      "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/MemoryScaler.java",
+      "local_path": "upstream/reference/MemoryScaler.java",
+      "sha256": "5fcce2685658c15e4575ecf770d93acb4bce6b393a2524220bbb9b4adaa05e92"
+    },
+    {
+      "upstream_path": "src/main/java/cws/k8s/scheduler/prediction/TaskScaler.java",
+      "local_path": "upstream/reference/TaskScaler.java",
+      "sha256": "a3a498321ca5bbbc1fb342253698bbec9450c54341e3627271d7e548a931fa2e"
+    },
+    {
+      "upstream_path": "pom.xml",
+      "local_path": "upstream/reference/pom.xml",
+      "sha256": "80be83d462936fe6d561ce13b12dee195345a5d212e33e3d0c58b8982a3e6bdf"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "commons-math3-3.6.1.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar",
+      "sha256": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308"
+    },
+    {
+      "name": "lombok-1.18.36.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar",
+      "sha256": "73b6b05b6a2d365b700bab08d30f94de9d336490bc0acce5b6181fef48cbf18e"
+    },
+    {
+      "name": "slf4j-api-2.0.16.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar",
+      "sha256": "a12578dde1ba00bd9b816d388a0b879928d00bab3c83c240f7013bf4196c579a"
+    },
+    {
+      "name": "slf4j-nop-2.0.16.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-nop/2.0.16/slf4j-nop-2.0.16.jar",
+      "sha256": "deca6c04ed35515a0a911fa44c0e836bee92c0c59d2e8fa9bab8ffbc464a9ba7"
+    },
+    {
+      "name": "annotations-26.0.2.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/26.0.2/annotations-26.0.2.jar",
+      "sha256": "2037be378980d3ba9333e97955f3b2cde392aa124d04ca73ce2eee6657199297"
+    }
+  ]
+}

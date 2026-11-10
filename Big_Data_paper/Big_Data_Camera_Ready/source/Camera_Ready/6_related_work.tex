@@ -1,0 +1,30 @@
+\section{Related Work}
+\label{sec:related}
+\textbf{Online workflow allocation.}
+Witt et al.~\cite{witt2019feedback} connect execution measurements,
+resource prediction, and batch scheduling through feedback.
+Sizey~\cite{bader2024sizey} trains multiple predictors and selects models
+online using completed-task observations. Ponder~\cite{lehmann2024ponder}
+adapts its sizing rule to available history and the relationship between
+input size and peak memory, combining regression with historical bounds
+and fallback requests. These methods motivate a workflow-specific adaptive
+comparator.
+Ponder is related work here; no new Ponder comparison is reported.
+
+\textbf{Distributional prediction.}
+NGBoost~\cite{duan2020ngboost} predicts parameters of a conditional outcome
+distribution, enabling uncertainty estimates beyond a point prediction.
+CAMP instead estimates selected memory quantiles and applies empirical
+residual calibration. Neither a distributional output nor a lower median
+prediction error alone establishes a better allocation policy: the
+reservation quantile and calibration determine the coverage--cost
+tradeoff. A comparison using identical prelaunch information is therefore
+needed before drawing conclusions about these alternatives.
+
+\textbf{Relationship to CAMP.}
+WORKS introduced consumption-aware prediction and selective
+auditing~\cite{camp2026works}. This paper treats that architecture as
+prior work and examines its operational consequences through retained
+component comparisons, downstream feedback, audit-cost accounting, and
+live deployment records. The planned unseen-input study addresses a
+further question that the repeated-input deployment cannot resolve.

@@ -504,14 +504,9 @@
       "sha256": "ff634b94ba6b283120fb3864211f95352d825881c7d706bd12fc03c501ee919e"
     },
     {
-      "path": "IEEE_WORKS_26_Sasank.pdf",
-      "bytes": 8239303,
-      "sha256": "f5418d5586db35bff39245c9efe299297024c95fdd60688a82f0c6edd959e4f7"
-    },
-    {
       "path": "README.md",
-      "bytes": 12347,
-      "sha256": "f48133e3c3420ade8ff93ec3dc8172314c654cdd82cc6c18889cc653b86ec549"
+      "bytes": 12210,
+      "sha256": "ca7cb79b62f0434234163312727602f49167a9d730137e8afd2991913d9337e1"
     },
     {
       "path": "RESULTS/README.md",
@@ -6472,11 +6467,6 @@
       "path": "WORKFLOWS/viralmetagenome/experiment.config",
       "bytes": 2738,
       "sha256": "7fc816a439b9ac0c0d761f1c5059813abff63d3033e27d593aa6d4bf99cd395d"
-    },
-    {
-      "path": "WORKS_README.md",
-      "bytes": 21193,
-      "sha256": "77e575c6526af59250d1c0e3b6a52fef063780312dc95161db12dfc6b3866063"
     }
   ]
 }

@@ -59,8 +59,6 @@ IEEE_BIGDATA_26_CAMP_ARTIFACT/
   RESULTS/                          Retained WORKS measurements and figures
   WORKFLOWS/                        Bowtie2 and six-workflow integration
   AUDIT/                            eBPF/STRACE collection and processing
-  WORKS_README.md                    Preserved original RQ1-RQ5 instructions
-  IEEE_WORKS_26_Sasank.pdf            Prior-paper reference
   ARTIFACT_MANIFEST.json             Hashes of the packaged release files
 ```
 

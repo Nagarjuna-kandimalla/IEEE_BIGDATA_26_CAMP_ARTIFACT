@@ -7,8 +7,8 @@ IEEE conference layout. `references.bib` is the manuscript-local bibliography.
 `result_assets/` contains generated tables and vector PDF figures.
 `CAMERA_READY_PREVIEW.pdf` is the included compiled manuscript.
 
-The shared IEEEtran class and bibliography style are under `source/`.
-`source/Original_Submission/` preserves the earlier manuscript source.
+The IEEEtran class and bibliography style are under `source/`. The package
+contains the camera-ready source and its referenced tables and figures.
 
 ## Build from the artifact root
 

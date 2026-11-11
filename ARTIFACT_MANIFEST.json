@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "date": "2026-11-10",
-  "description": "Packaged artifact files and completed-artifact documentation; excludes this manifest and generated ignored files.",
+  "date": "2026-11-11",
+  "description": "Packaged artifact with camera-ready-only manuscript source; excludes this manifest and generated ignored files.",
   "files": [
     {
       "path": ".gitattributes",
@@ -99,36 +99,6 @@
       "sha256": "e84c86052e46a146df1c8ccd4a10cf9fc6d94e1bb9563282e74fff14f340d785"
     },
     {
-      "path": "Big_Data_paper/BigD1136_3793_CAMP.pdf",
-      "bytes": 9365833,
-      "sha256": "62dfce3d43ae80ac01ce230ca929fde56e7acd99a5f89b825dca04e34fdce195"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/Arch_Image_Final.png",
-      "bytes": 1298945,
-      "sha256": "7d5775e642f6ce00a34ce64c21bf4cd6b7a91bb18367d0ecf0c9b531cae43364"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/Arch_Image_Final_3.png",
-      "bytes": 1293574,
-      "sha256": "bbc0381ffd4faf34d232bb741cb4f83312f6b4e05a36ff2b4df920919beda62b"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/Gating Logic_Exp_2_Diagram.png",
-      "bytes": 1515624,
-      "sha256": "b089e4061ac753366f82d7557921f5c7b5f38e04c13766e1cdeca9248b363de4"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/Gating Logic_Exp_2_Final.png",
-      "bytes": 1515624,
-      "sha256": "b089e4061ac753366f82d7557921f5c7b5f38e04c13766e1cdeca9248b363de4"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/Gating logic_Exp_1_ Final.png",
-      "bytes": 1159510,
-      "sha256": "30dac2c2d5cf58040c3ee98371e24560d3815b94d488feb07c1a86cdab472a2e"
-    },
-    {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/0_abstract.tex",
       "bytes": 2335,
       "sha256": "9c2d41e3807adc681ed3f3176cdb2eef90cbe907a9145d2b2dfc16083ce30605"
@@ -170,8 +140,8 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/BUILD_NOTES.md",
-      "bytes": 2542,
-      "sha256": "9b353fb0e7b414d326451347206f315c0cf25c9fa18720c438b9582b482e3a8e"
+      "bytes": 2548,
+      "sha256": "a762889b14011009faa87daf3803a98f32de915536bb84700c4d9d96a0cd8bb3"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/CAMERA_READY_PREVIEW.pdf",
@@ -201,7 +171,7 @@
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/result_assets/audit_tradeoffs.pdf",
       "bytes": 14085,
-      "sha256": "52878bb5853cf9a3c9e802f8884b3d95f16920c750e42a280d5f919c6c167349"
+      "sha256": "7354a28ee291523d8ebfa7afe995e9c834e7e53824e56b8594edb6a9e8c38d48"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/result_assets/audit_tradeoffs.png",
@@ -211,7 +181,7 @@
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/result_assets/bowtie_margins.pdf",
       "bytes": 13441,
-      "sha256": "53c18537681c4c4573d504b74537eb3522a25b5d55523ee7f12e4ea542a881d2"
+      "sha256": "73079a8c429624b78e707863936fc5c15c4effb7c90c8c4b38a99d7b18447f51"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/result_assets/bowtie_margins.png",
@@ -254,106 +224,6 @@
       "sha256": "cd7eeac904767b6da19eced730b09f1c10011104796a1848607654f8258f5898"
     },
     {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Arch_Diagram.png",
-      "bytes": 1164840,
-      "sha256": "1061b740333fc049ee864c4f5e4387c081a78ee2917fb7844c2627752017d973"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Arch_Image_Final_3.png",
-      "bytes": 1293574,
-      "sha256": "bbc0381ffd4faf34d232bb741cb4f83312f6b4e05a36ff2b4df920919beda62b"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_10_Exp_3.png",
-      "bytes": 1343866,
-      "sha256": "471dc3acdaad818a44db82506359b48dca1395ca4676de281ac91461575404a2"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_1_Paper_1.png",
-      "bytes": 1811201,
-      "sha256": "2ef974d3fba98daddae9fe4f99bf20c406e15646736241926953e4aa11953a95"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_3_Point_Model_Enhanced.png",
-      "bytes": 1187073,
-      "sha256": "53ed3e7a48568c55b14e7090b90488620895ab451253b394fdbcc31bfdd4984b"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_4_Dis_Model_Enhanced.png",
-      "bytes": 1414746,
-      "sha256": "b109e4e25c9853156768c325a8290a8fbec23ceac2679a3036e7c4f347ef2360"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_5_PerBucketZoo_2.png",
-      "bytes": 1216528,
-      "sha256": "2772a64649fa80833aefb8a117e3d8cd8a05fc5b25947fabe90b503838792dd2"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_6_Model_zoo_Enhanced.png",
-      "bytes": 1110592,
-      "sha256": "96144871deced720514c8a6f15a22dfeb5293b8e7ea191357480dc6dd54d2076"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_7_Per_model_calibration.png",
-      "bytes": 1781698,
-      "sha256": "dd0253a51a5d776f466161b34f69afd5c26d501ef9ecdc990477662e4d586743"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_8_per_model_prediction_error.png",
-      "bytes": 1396702,
-      "sha256": "3cb5b013e7f5fa5458deaa177df457a842de27fa46486e837911ff5aea01b1af"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Fig_9_Enhanced.png",
-      "bytes": 1330992,
-      "sha256": "76c91644d18cbc2281a9b54630996c1dee1b58e3a5831120bb0eceb4c79392f7"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/RQ2_Under_allocation.png",
-      "bytes": 1254609,
-      "sha256": "741df98400685cfe75bec75cfffb231aee3f18c2d5baae51a5f13d9a0d9acfaa"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/RQ_5_Bowtie_Cold_And_Warm_LiveRun.png",
-      "bytes": 1383738,
-      "sha256": "d7dbf8f802fc248812617bec977486de77d436b187d791499588e2f6399d19f4"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/Variance_FInal.png",
-      "bytes": 990669,
-      "sha256": "7e099c5b4a6983ffa5e8030893a6e25769b367c021c61a29a31c8f448272d17a"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/fig_rq1_full_audit_workflow_overhead.png",
-      "bytes": 1382913,
-      "sha256": "8a89d40250fb6d18a92f035f66985f11b299307a77268f491be140c4447655d5"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/fig_rq1_mmap_backed_consumption.png",
-      "bytes": 1619279,
-      "sha256": "d3b34fdcce5f520861c9154d03c62c34d94a5e658a07448cb378c6db1ab4804c"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/fig_rq1_signal_overhead.png",
-      "bytes": 289681,
-      "sha256": "ddbb37e2d3a47a503fdc7435be89c98649113875a833768f9dc10938db2cab00"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/fig_rq2_allocation_tradeoff.png",
-      "bytes": 142787,
-      "sha256": "4ddb9e460f9f321ce73435435fe831e59447a123802bfc6d44eb1317b934faf7"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/fig_rq3_selective_audit.png",
-      "bytes": 1198508,
-      "sha256": "fbe5e3e2388933751f472d5410a7f09f2b8394d701e2576b51a6ecf09db7f861"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Figures/fig_sizey_vs_camp.png",
-      "bytes": 1402158,
-      "sha256": "99d5e667210c550a15afcdc32de2a26e96f7115032881a2d61f0151b25ee85dd"
-    },
-    {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/IEEEtran.bst",
       "bytes": 59215,
       "sha256": "b445bc94cfde36bb836a4c6f5ce7149f1488d76dfe8acd39a8771f084ba8f348"
@@ -362,66 +232,6 @@
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/IEEEtran.cls",
       "bytes": 281961,
       "sha256": "5832f14d4cffd002b4e42c5e04bd24aa5823314b625260a1db598e536314f4f9"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/0_abstract.tex",
-      "bytes": 3470,
-      "sha256": "1c24e3dbed39ca36f831b407d150b1ffa7524e46a9be65e9d42906062a90275c"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/1_introduction.tex",
-      "bytes": 9523,
-      "sha256": "ae729a6d51eadb8d78c6485bb37220858dd89e44a962175d3803c48ba5edbb0f"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/2_problem-and-running-example.tex",
-      "bytes": 7294,
-      "sha256": "614b2a1cbb72939b62f98cf6b464d29ff9bbb7904d314f782a1b02b52b265a35"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/3_camp_design.tex",
-      "bytes": 12505,
-      "sha256": "2256488ef5177ed229b9a4eb151919348a05b04cb16b7edacdb5be43b5820650"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/4_experimental_method.tex",
-      "bytes": 12068,
-      "sha256": "0b600ff6049482d75b166463c439a35a84308cec7ae4508c4858c99582c40f57"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/5_results.tex",
-      "bytes": 9644,
-      "sha256": "a742021954dfd69c9999563ad7ee833251704b7a5376b5f1b9aa3bbee52d4fca"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/6_related-work.tex",
-      "bytes": 2385,
-      "sha256": "98c6c85a88975b53d2156b09b9b21348f9305e0689a3956fd5ceec9f37e3cdfa"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/7_conclusion.tex",
-      "bytes": 1548,
-      "sha256": "6034342af339f7d8fd9aecaffe2e9c68ae089df62fc21956111fad8ed77c072b"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Original_Submission/main.tex",
-      "bytes": 2672,
-      "sha256": "d439717dd23ce05534221eb94f59094bf39fc6e0f2700d980c0154c7f10df6a6"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/experiments-evaluation.tex",
-      "bytes": 18776,
-      "sha256": "e063128a32807c7a8922ac9f91931a6d8c447f117fdc17cc308bb872ce9b36db"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Camera_Ready/source/references.bib",
-      "bytes": 27597,
-      "sha256": "c7ac29d9207966f0dd6f94dc97e93493b3229753a8894710ccf6281e09b62f06"
-    },
-    {
-      "path": "Big_Data_paper/Big_Data_Reviewer_Comments",
-      "bytes": 17793,
-      "sha256": "af5bd1dc429664ef21e6dfbcb44622d8caeb9d38c6ac0e3eac1f0967e31348f8"
     },
     {
       "path": "DATA/README.md",
@@ -505,8 +315,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 12210,
-      "sha256": "ca7cb79b62f0434234163312727602f49167a9d730137e8afd2991913d9337e1"
+      "bytes": 12215,
+      "sha256": "c1fe486dc0c58ae25adedf9f22576eeeab33a3438968b90f81b426709cf5fd7f"
     },
     {
       "path": "RESULTS/README.md",

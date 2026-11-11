@@ -43,8 +43,8 @@ IEEE_BIGDATA_26_CAMP_ARTIFACT/
   Big_Data_paper/
     Big_Data_Camera_Ready/source/
       Camera_Ready/                 TeX, bibliography, generated assets
-      Original_Submission/          Preserved earlier source
-      Figures/                      Inherited shared figures
+      IEEEtran.cls                  IEEE conference document class
+      IEEEtran.bst                  IEEE bibliography style
   SCRIPTS/
     BIGDATA/                        Integrity verification and paper build helpers
     BASELINES/ponder/               Standalone original-code Ponder predictor

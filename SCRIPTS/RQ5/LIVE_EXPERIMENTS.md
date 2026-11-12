@@ -119,12 +119,15 @@ Python 3.9+ standard library is enough for result recomputation and model-store
 verification; no model is loaded by these commands.
 
 ```bash
+python3 SCRIPTS/RQ5/live/verify_package.py --require-tracked
 python3 SCRIPTS/RQ5/live/reproduce_results.py --output build/rq5-live-results
 python3 SCRIPTS/RQ5/live/models.py list
 python3 SCRIPTS/RQ5/live/models.py verify --deep
 ```
 
-The first command checks 6,000 successful unique tasks per stage, recomputes
+The package verifier checks the complete artifact manifest, including tracked-file
+coverage; omit `--require-tracked` for an extracted ZIP without Git metadata.
+The result command checks 6,000 successful unique tasks per stage, recomputes
 requests/peaks/unused memory/coverage and point-prediction MdAPE, and compares
 flagstat files. Outputs are `results.json` and `metrics.tsv`; reference output is
 under `RESULTS/RQ5/live_experiments/recomputed/`.

@@ -48,5 +48,85 @@
     "warm_transfer",
     "direct_transfer"
   ],
-  "retained_stage_count": 4
+  "retained_stage_count": 4,
+  "audit": {
+    "status": "PASS",
+    "all_terminal_checkpoint_preflights": {
+      "warm_transfer_cold": {
+        "status": "PASS",
+        "mode": "warm",
+        "workflow": "bowtie2",
+        "model_version": "exp02_cold-0044-completed-06000",
+        "calibration_model_version": "exp02_cold-0044-completed-06000",
+        "calibration_rows": 64,
+        "history_rows": 34490,
+        "training_rows": 34490,
+        "target_rows": {
+          "history": 6000,
+          "sqlite": 6000,
+          "training": 6000
+        },
+        "sqlite_rows": 34490,
+        "model_knows_target": true
+      },
+      "warm_transfer_warm": {
+        "status": "PASS",
+        "mode": "warm",
+        "workflow": "bowtie2",
+        "model_version": "exp02_warm-0040-completed-06000",
+        "calibration_model_version": "exp02_warm-0040-completed-06000",
+        "calibration_rows": 64,
+        "history_rows": 40490,
+        "training_rows": 40490,
+        "target_rows": {
+          "history": 12000,
+          "sqlite": 12000,
+          "training": 12000
+        },
+        "sqlite_rows": 40490,
+        "model_knows_target": true
+      },
+      "warm_transfer_new_input": {
+        "status": "PASS",
+        "mode": "warm",
+        "workflow": "bowtie2",
+        "model_version": "exp02_new_input-0034-completed-06000",
+        "calibration_model_version": "exp02_new_input-0034-completed-06000",
+        "calibration_rows": 64,
+        "history_rows": 46490,
+        "training_rows": 46490,
+        "target_rows": {
+          "history": 18000,
+          "sqlite": 18000,
+          "training": 18000
+        },
+        "sqlite_rows": 46490,
+        "model_knows_target": true
+      },
+      "direct_transfer_new_input": {
+        "status": "PASS",
+        "mode": "warm",
+        "workflow": "bowtie2",
+        "model_version": "exp03_new_input-0038-completed-06000",
+        "calibration_model_version": "exp03_new_input-0038-completed-06000",
+        "calibration_rows": 64,
+        "history_rows": 40490,
+        "training_rows": 40490,
+        "target_rows": {
+          "history": 12000,
+          "sqlite": 12000,
+          "training": 12000
+        },
+        "sqlite_rows": 40490,
+        "model_knows_target": true
+      }
+    },
+    "manifest_issue_corrected": {
+      "stale_hashes": 6,
+      "previously_omitted_tracked_files": [
+        "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/slurm/isolated_audit_python.sh"
+      ]
+    },
+    "fresh_biological_rerun": false
+  }
 }

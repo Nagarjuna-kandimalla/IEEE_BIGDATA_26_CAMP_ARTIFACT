@@ -65,8 +65,8 @@
     },
     {
       "path": "AUDIT/helper_scripts/exp2/ebpf_audit_py39.py",
-      "bytes": 15346,
-      "sha256": "4fca86d9bbbc52fc87a135299e082a8589c23fb0177c04525c6bd2555a3bf896"
+      "bytes": 15852,
+      "sha256": "8e2f375c3faf6a1d225ec1be99da4c38172b959c313f4874f9be90960a1b2115"
     },
     {
       "path": "AUDIT/helper_scripts/exp2/gatk.config",
@@ -6911,7 +6911,7 @@
     {
       "path": "RESULTS/RQ5/live_experiments/SHA256SUMS",
       "bytes": 1041242,
-      "sha256": "1640eb5535bcda0dcc6b36d31667bd1db9c587ef72764fdc7fa1e5c3b6fcb451"
+      "sha256": "c1133dff90f721e295e3e8f8bcff137ac506ced88821833941c2d78232cb27fa"
     },
     {
       "path": "RESULTS/RQ5/live_experiments/direct_transfer_new_input/ANALYSIS.md",
@@ -16900,8 +16900,8 @@
     },
     {
       "path": "RESULTS/RQ5/live_experiments/reproduction-validation.json",
-      "bytes": 1926,
-      "sha256": "1e4efe5e5b554093281c6f86320f9dea47f154e93b5910fe5450a4c04d082d11"
+      "bytes": 4422,
+      "sha256": "baac9ec8ef68111e3c3a85d7e45361d7fe0ebbce28779155917cf13dbd8cc1c5"
     },
     {
       "path": "RESULTS/RQ5/live_experiments/studies.json",
@@ -52130,8 +52130,8 @@
     },
     {
       "path": "SCRIPTS/RQ5/LIVE_EXPERIMENTS.md",
-      "bytes": 22900,
-      "sha256": "d2fa702eb426fe1be112badd74c157336cb74173ba0077ce7ea0a84bc45a444d"
+      "bytes": 23123,
+      "sha256": "0da38b5bffc9f6b6b6ac9609225f09c6873a85168b5fbe628f6ab2a13c6cb379"
     },
     {
       "path": "SCRIPTS/RQ5/README.md",
@@ -52215,13 +52215,13 @@
     },
     {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/configs/bowtie2_base.config",
-      "bytes": 7010,
-      "sha256": "5d9da87b2e83c97dae189ff42268f1b99841aa041aae17e6850b0173b6de2bff"
+      "bytes": 7054,
+      "sha256": "b695898db5609c2c82e1f2fe0129ca643bfaae215ab0cf7c3d1754522576273d"
     },
     {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/configs/bowtie2_online.config",
-      "bytes": 1122,
-      "sha256": "668db104ce763d8e2755b592fcb6ada0d5adb843b8e8a042462bdc5b7153cbf1"
+      "bytes": 1231,
+      "sha256": "55549c3ba54f95d37af78d6b97f9d5374df03d792806dedc6b62dece4fb3db21"
     },
     {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/configs/camp_online_ebpf.config",
@@ -52230,8 +52230,8 @@
     },
     {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/configs/camp_online_ebpf_race_safe.config",
-      "bytes": 4513,
-      "sha256": "8fd7f78ccba83a15dbc60d69a127dff9535092b1b9d6d37169a5076b0ce76087"
+      "bytes": 5547,
+      "sha256": "9bd8cf0d009111258a900d8a7369a3f55c8bdd5c8a1a8ed719c4a0c7c75c8e42"
     },
     {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/configs/camp_policy.json",
@@ -52274,9 +52274,14 @@
       "sha256": "216855496d90e8912a3b13d57ab2d4deaeb2b042372f47b2ea49e99551b6d713"
     },
     {
+      "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/slurm/isolated_audit_python.sh",
+      "bytes": 656,
+      "sha256": "77bb9781fd8cf7f89c13d68f0efc7f5f859b37a1781a9de174cddc082d86192c"
+    },
+    {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/slurm/run_fresh_bowtie2.sh",
-      "bytes": 14903,
-      "sha256": "feab1c07f0183054ed5ed5c34b11c83ecf8c9ccd89e8dcad3206c3eeced78a2e"
+      "bytes": 15245,
+      "sha256": "198a2b477e1c4b107055bc459bbb09d9298fae1bcd240ad2d84a1a036fb06841"
     },
     {
       "path": "SCRIPTS/RQ5/experiment_template/camp/live_online_learning/slurm/run_fresh_bowtie2.slurm",
@@ -52365,8 +52370,8 @@
     },
     {
       "path": "SCRIPTS/RQ5/live/SHA256SUMS",
-      "bytes": 1679,
-      "sha256": "1280a04f6187ad51a44fc067adfc6c21b8fea1a72ab85e40cd4878b5e1a5e38a"
+      "bytes": 1763,
+      "sha256": "309379f475eaf00627d4e0e0725c765a033df21d6a221d7d794963a08bce0b67"
     },
     {
       "path": "SCRIPTS/RQ5/live/config/cluster.example.json",
@@ -52464,6 +52469,11 @@
       "sha256": "867a3025eaff345fc4ad53331126a4219445614aadd092cd4285e33f673dc59e"
     },
     {
+      "path": "SCRIPTS/RQ5/live/verify_package.py",
+      "bytes": 2144,
+      "sha256": "5fafbd3b5fe691b5bac71c074ebe3e811e79da55bf602ef45b054048a624abc6"
+    },
+    {
       "path": "SCRIPTS/RQ5/prepare_workspace.py",
       "bytes": 2175,
       "sha256": "00b7fec5b8f1667e68b2aca5468883280f33829f1cce3f755a44fbce30b550b3"
@@ -52540,8 +52550,8 @@
     },
     {
       "path": "WORKFLOWS/bowtie2/tool_shims/wget",
-      "bytes": 635,
-      "sha256": "21fa949435b3c893d8d93426845415252952e5a1142ba1a453a33689681a5931"
+      "bytes": 706,
+      "sha256": "21192994efcd231111ad386db253c404b875ed75c4e00206f3eb4f013f375cce"
     },
     {
       "path": "WORKFLOWS/common/build_static_manifest.py",

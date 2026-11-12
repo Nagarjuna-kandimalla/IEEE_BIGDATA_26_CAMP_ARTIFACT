@@ -1,7 +1,7 @@
 \section{Results}
 \label{sec:results}
 The following results distinguish published WORKS endpoints from further
-analysis of retained measurements. New baseline and unseen-input results
+analysis of retained measurements. Unseen-input results
 remain pending.
 
 \begin{figure}[!t]
@@ -92,12 +92,11 @@ recorded peak increase from four to thirteen, giving warm coverage of
 99.78\%. All 6,000 tasks eventually complete in both runs, with 16 and
 15 retries. The records flag no first-attempt OOMs; below-peak requests
 must therefore not be relabeled observed OOM failures. This experiment
-supports feedback reuse on repeated inputs, not superiority over an
-unmeasured baseline or transfer to unseen data.
+supports feedback reuse on repeated inputs; it does not establish transfer
+to unseen data.
 
 \subsection{Remaining evaluation}
-Results for NGBoost and the
-unseen-input frozen-versus-online comparison are \textbf{?} (pending).
-Ponder is an optional additional comparator. Prediction latency and
+Results for the unseen-input frozen-versus-online comparison are
+\textbf{?} (pending). Prediction latency and
 retraining resource costs also remain \textbf{?}; no claim of total
 system-level net benefit is made from the audit-only accounting.

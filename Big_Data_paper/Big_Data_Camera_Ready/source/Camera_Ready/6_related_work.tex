@@ -7,9 +7,8 @@ Sizey~\cite{bader2024sizey} trains multiple predictors and selects models
 online using completed-task observations. Ponder~\cite{lehmann2024ponder}
 adapts its sizing rule to available history and the relationship between
 input size and peak memory, combining regression with historical bounds
-and fallback requests. These methods motivate a workflow-specific adaptive
-comparator.
-Ponder is related work here; no new Ponder comparison is reported.
+and fallback requests. CAMP incorporates consumed-data history and predicted
+consumption alongside task attributes and historical memory measurements.
 
 \textbf{Distributional prediction.}
 NGBoost~\cite{duan2020ngboost} predicts parameters of a conditional outcome
@@ -18,8 +17,8 @@ CAMP instead estimates selected memory quantiles and applies empirical
 residual calibration. Neither a distributional output nor a lower median
 prediction error alone establishes a better allocation policy: the
 reservation quantile and calibration determine the coverage--cost
-tradeoff. A comparison using identical prelaunch information is therefore
-needed before drawing conclusions about these alternatives.
+tradeoff. Our component studies assess coverage and reservation cost together
+when examining the contribution of consumption features.
 
 \textbf{Relationship to CAMP.}
 WORKS introduced consumption-aware prediction and selective

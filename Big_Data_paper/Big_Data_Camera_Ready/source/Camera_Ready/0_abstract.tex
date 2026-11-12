@@ -17,9 +17,8 @@ contributions of read and memory-mapped access measurements, historical
 consumption features, and predicted consumption through controlled
 ablations. We also examine selective auditing's effect on downstream
 allocations and compare estimated allocation savings with auditing overhead.
-Probabilistic allocators provide reference points
-for assessing the value of consumption feedback, with coverage and resource
-use evaluated together. As existing deployment evidence, a live Bowtie2
+Coverage and resource use are evaluated together.
+As existing deployment evidence, a live Bowtie2
 cold-to-warm evaluation on repeated inputs, with 6,000 logical tasks per run,
 shows a 71.96\% reduction in total requested memory in the warm run; initial
 allocations cover the recorded peak memory for 99.78\% of warm-run tasks.

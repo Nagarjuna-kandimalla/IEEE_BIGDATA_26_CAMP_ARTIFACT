@@ -100,13 +100,13 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/0_abstract.tex",
-      "bytes": 2335,
-      "sha256": "9c2d41e3807adc681ed3f3176cdb2eef90cbe907a9145d2b2dfc16083ce30605"
+      "bytes": 2234,
+      "sha256": "794b109b36a91878bab56947af3617db407cf55eff120e78f60d1eab762da238"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/1_introduction.tex",
-      "bytes": 5780,
-      "sha256": "f0bb54b860d82e499603819699b4cedf9f5b3a86f6b65392a5342b24e3b3d904"
+      "bytes": 5541,
+      "sha256": "7a20a526725acf5875440488fd19833e451f52008be7604f4c2b154c04a6137d"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/2_problem_formulation.tex",
@@ -115,8 +115,8 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/3_camp_background_and_relationship.tex",
-      "bytes": 6851,
-      "sha256": "5a589eec2131de1b63d1a6fcc766426392f49556749d1b815fa5a40cdad89ace"
+      "bytes": 6813,
+      "sha256": "62b58e5c9515ebb74ab90127d81b9f72d28a556564da52c07c7ebd1678e076ba"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/4_experimental_method.tex",
@@ -125,13 +125,13 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/5_results.tex",
-      "bytes": 5244,
-      "sha256": "4d67c9ecac2ea9609f309119227f6a89198680a1ef84411571cbc6c34201f007"
+      "bytes": 5144,
+      "sha256": "d947827078e30ce74142eb06aae89af717780b5346d1b3a82932322e872d1159"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/6_related_work.tex",
-      "bytes": 1720,
-      "sha256": "807bb8e7fa532154cc175d1f36d832ebd7534491ec144953f6e2fdf45c0f4a47"
+      "bytes": 1717,
+      "sha256": "0c33873e9751b2a5fe48fbd9bab30a27d18bf19d84de4fca9789f5ebb755c796"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/7_conclusion.tex",
@@ -145,8 +145,8 @@
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/CAMERA_READY_PREVIEW.pdf",
-      "bytes": 106023,
-      "sha256": "9df05cb2f5481374673f54b9fcb9399bdc43e872328337d517e1e38114ebc702"
+      "bytes": 105704,
+      "sha256": "99a00057ae38ea7571c9197f63be9fb9f9e7b30e779098399fbf90b73a978e45"
     },
     {
       "path": "Big_Data_paper/Big_Data_Camera_Ready/source/Camera_Ready/RESULTS_PROVENANCE.md",

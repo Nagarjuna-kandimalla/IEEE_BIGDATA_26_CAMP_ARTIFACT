@@ -1,0 +1,68 @@
+{
+  "comparisons": {
+    "warm_pass_ablation": {
+      "flagstat_exact_matches": 1974,
+      "flagstat_total": 1974,
+      "percent_change_second_vs_first": {
+        "peak_gib": 1.6524631542446322,
+        "request_gib": 7.6231702280618485,
+        "unused_gib_hours": 72.65295403761694
+      }
+    }
+  },
+  "definitions": "First nominal CAMP requests, final successful task peak/runtime; excludes +128 MiB execution allowance and failed-attempt/measurement/modeling costs. Direct-Transfer reuses the Warm-Transfer cold checkpoint, not a fresh cold run.",
+  "interpretation": "Clean executions can differ numerically due to completion-order-dependent online fitting. Frozen-model evaluation was not performed.",
+  "results": {
+    "direct_transfer_new_input": {
+      "coverage_percent": 95.78333333333333,
+      "duplicate_success_observations": 0,
+      "first_attempt_ooms": 0,
+      "mdape_percent": 2.6851564909530774,
+      "oom_attempts": 0,
+      "peak_gib": 277.9579277038574,
+      "request_gib": 343.55859375,
+      "tasks": 6000,
+      "unused_gib_hours": 0.22108903188705445
+    },
+    "warm_transfer_cold": {
+      "coverage_percent": 99.53333333333333,
+      "duplicate_success_observations": 0,
+      "first_attempt_ooms": 0,
+      "mdape_percent": 1.657774168146711,
+      "oom_attempts": 0,
+      "peak_gib": 229.3280029296875,
+      "request_gib": 977.787109375,
+      "tasks": 6000,
+      "unused_gib_hours": 32.86088721465005
+    },
+    "warm_transfer_new_input": {
+      "coverage_percent": 94.15,
+      "duplicate_success_observations": 0,
+      "first_attempt_ooms": 0,
+      "mdape_percent": 4.734886747039645,
+      "oom_attempts": 0,
+      "peak_gib": 273.4394416809082,
+      "request_gib": 319.2236328125,
+      "tasks": 6000,
+      "unused_gib_hours": 0.12805401049719917
+    },
+    "warm_transfer_warm": {
+      "coverage_percent": 99.58333333333333,
+      "duplicate_success_observations": 0,
+      "first_attempt_ooms": 0,
+      "mdape_percent": 1.1279214114766152,
+      "oom_attempts": 0,
+      "peak_gib": 229.38092422485352,
+      "request_gib": 241.12109375,
+      "tasks": 6000,
+      "unused_gib_hours": 0.01846851199467977
+    }
+  },
+  "source_sha256": {
+    "RESULTS/RQ5/live_experiments/direct_transfer_new_input/task_instances.tsv.gz": "1562e8c28bba2d6f37894412d62512a11a9168607a734066754327568f2f0986",
+    "RESULTS/RQ5/live_experiments/warm_transfer_cold/task_instances.tsv.gz": "bd9bb67af07fa388aae7791f409fb9ea639d1af34e707ff1a501899ddc2b4639",
+    "RESULTS/RQ5/live_experiments/warm_transfer_new_input/task_instances.tsv.gz": "d8b61d20a01d24338b58676a800074905819e8dd8e56925b09388de576af70c5",
+    "RESULTS/RQ5/live_experiments/warm_transfer_warm/task_instances.tsv.gz": "b659f58a29e956ed7058292374468985c4b573d6f0639f818b568c7f3bf71bc7"
+  },
+  "status": "PASS"
+}

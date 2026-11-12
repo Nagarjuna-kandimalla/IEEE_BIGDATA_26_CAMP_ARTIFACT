@@ -1,35 +1,25 @@
-% Working abstract for the agreed Big Data extension scope.
-% Existing Bowtie2 results describe repeated inputs, not unseen-input adaptation.
-% Finalize the evaluation statements and conclusions after the experiments;
-% do not substitute published WORKS results for the unseen-input study.
 \begin{abstract}
-Scientific workflow schedulers must reserve memory before a task starts:
-insufficient reservations risk execution failures, while excess reservations
-waste resources. Consumption-Aware Memory Prediction (\toolname), introduced
-in our prior WORKS paper, uses historical data-consumption and memory
-measurements to predict the memory required by subsequent tasks. This study
-examines whether deploying \toolname online can limit memory waste while
-maintaining reliable execution on previously unseen workflow inputs.
-We describe its Nextflow integration and task-filtered eBPF measurement of
-explicit reads and file-backed page-fault activity, explaining how completed
-observations inform later allocations. The evaluation separates the
-contributions of read and memory-mapped access measurements, historical
-consumption features, and predicted consumption through controlled
-ablations. We also examine selective auditing's effect on downstream
-allocations and compare estimated allocation savings with auditing overhead.
-Coverage and resource use are evaluated together.
-As existing deployment evidence, a live Bowtie2
-cold-to-warm evaluation on repeated inputs, with 6,000 logical tasks per run,
-shows a 71.96\% reduction in total requested memory in the warm run; initial
-allocations cover the recorded peak memory for 99.78\% of warm-run tasks.
-An additional evaluation on previously unseen inputs will compare frozen
-and online-updated models as execution history accumulates. Together, these
-experiments assess whether consumption feedback justifies its measurement
-cost and supports reliable allocation beyond previously observed inputs.
-\textit{Quantitative results for the unseen-input evaluation are pending
-in this working draft.}
+Scientific workflows rely on schedulers to reserve memory before tasks
+start, balancing execution failures against excess reservations. Consumption-Aware Memory
+Prediction (\toolname), introduced in our prior WORKS paper, augments task
+metadata and memory history with measured and predicted data consumption.
+This study examines the value and cost of that feedback through component
+analyses, selective-auditing replay, and new Nextflow/Slurm executions.
+The component results expose tradeoffs between prediction error, allocation
+coverage, and auditing cost rather than a uniformly dominant configuration.
+In a live Bowtie2 evaluation with 6,000 tasks per stage, an additional pass
+over the original inputs reduces aggregate CAMP requests by 75.34\%.
+On a different ENA study, initial-request coverage falls from 99.58\% on
+repeated inputs to 94.15\%, despite continued online learning.
+Branching directly from the same cold checkpoint, without the extra pass,
+increases requests by 7.62\% and coverage to 95.78\%.
+All tasks complete with no recorded OOMs under a separate 128~MiB per-task
+execution allowance; these observations do not establish the sufficiency
+of CAMP requests alone. The results support evaluating consumption feedback
+through its coverage--reservation tradeoff, while distinguishing online
+adaptation from frozen-model generalization and allocation estimates from
+end-to-end resource savings.
 \end{abstract}
-
 \begin{IEEEkeywords}
 scientific workflows, online memory allocation, consumption feedback,
 eBPF, selective auditing

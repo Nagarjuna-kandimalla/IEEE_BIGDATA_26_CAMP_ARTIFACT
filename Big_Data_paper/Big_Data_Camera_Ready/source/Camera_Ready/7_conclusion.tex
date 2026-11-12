@@ -1,5 +1,16 @@
 \section{Conclusion}
 \label{sec:conclusion}
-\textit{Draft section: pending extension work.}
-
-The conclusion will be written after the extension experiments establish their findings, reservation-cost tradeoffs, and limits. No final effectiveness claim is made in this working draft.
+Consumption feedback must be assessed through both allocation coverage
+and reservation cost. The retained component studies show that adding
+measurement or prediction signals does not improve every metric, while
+audit accounting limits when a fixed allocation saving covers measurement
+cost. The new live Bowtie2 executions extend this evidence beyond repeated
+inputs. A warm pass reduces aggregate requests by 75.34\%, but new-input
+coverage subsequently falls to 94.15\%. Skipping that pass from the same
+cold checkpoint increases requests by 7.62\% and coverage to 95.78\%,
+exposing a tradeoff rather than a uniformly preferable training path.
+All tasks complete under a separately recorded execution allowance;
+nominal request sufficiency and end-to-end resource savings remain
+unestablished. Repeated trials across input studies, matched control-node
+resources, and a frozen-model arm are needed to isolate these effects
+and determine how broadly they hold.

@@ -170,3 +170,8 @@ manifest={'source_sha256':sources,'verified_route_metrics':routes.to_dict('recor
 (OUT/'result_provenance.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('Verified 8 feature/configuration rows, 2 published endpoints, 2 mmap arms, 25 paired downstream summaries, 40 audit-budget selections, and both live runs.')
 print('Assets:',OUT)
+
+# New live execution sources remain distinct from the retained WORKS assets.
+import subprocess
+import sys
+subprocess.run([sys.executable,str(HERE/'build_live_assets.py'),'--repo-root',str(ROOT)],check=True)

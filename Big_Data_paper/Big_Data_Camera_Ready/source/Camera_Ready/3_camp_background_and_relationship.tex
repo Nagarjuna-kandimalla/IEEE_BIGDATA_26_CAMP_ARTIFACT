@@ -107,11 +107,12 @@ a transparent allocator for every workflow engine.
 \subsection{Prior evidence and extension boundary}
 WORKS already reports the architecture, Access and Sizey comparisons,
 selected feature and mmap ablations, and selective-auditing
-results~\cite{camp2026works}. The retained Bowtie2 runs provide existing
-deployment evidence~\cite{campArtifact}. The present study develops the
+results~\cite{camp2026works}. Earlier Bowtie2 records provide repeated-input deployment evidence;
+the new executions are packaged separately in the artifact~\cite{campArtifact}. The present study develops the
 component analysis, examines downstream allocation benefit relative to
 audit cost, and
-specifies a controlled extension to unseen inputs. Reanalysis of existing
+evaluates online adaptation to new inputs and the effect of an additional
+warm pass from a shared cold checkpoint. Reanalysis of existing
 measurements is distinguished from new experiments. Routing, calibration,
 and compatibility scopes are described as background; separate ablation
 sweeps of these mechanisms are outside the present scope.

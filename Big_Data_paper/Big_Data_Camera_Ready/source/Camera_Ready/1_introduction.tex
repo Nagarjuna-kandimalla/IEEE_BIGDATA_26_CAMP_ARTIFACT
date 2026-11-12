@@ -31,16 +31,15 @@ reduce wasted memory while maintaining reliable execution as workflows
 encounter previously unseen inputs.
 
 The earlier CAMP study compares prediction with and without consumption
-features and evaluates Sizey, selected ablations, and selective-auditing
-results~\cite{camp2026works}. Existing deployment results in the CAMP
-artifact include a live Bowtie2 cold-to-warm evaluation~\cite{campArtifact}.
-Across 6,000
-logical tasks per run, total requested memory falls by 71.96\% in the warm
-run, with initial allocations covering recorded peak memory for 99.78\%
-of tasks. This allocation coverage is distinct from execution success.
-These results establish the feasibility of using accumulated history on
-repeated inputs. Assessing the value and cost of that feedback, and its
-behavior on unseen inputs, requires additional controlled comparisons.
+features and evaluates selected baselines, ablations, and selective-auditing
+policies~\cite{camp2026works}. Here, new Bowtie2 executions distinguish
+repeated-input learning from adaptation to a different input study.
+A cold execution starts from an offline-trained bundle with no Bowtie2
+history; a subsequent warm pass repeats the original inputs. A new-input
+stage then continues learning on a disjoint ENA study. To examine the value
+of the extra warm pass, a second branch starts the same new inputs directly
+from the saved cold checkpoint. These branches share their cold state,
+but neither freezes learning during the new workload.
 
 Three considerations guide this evaluation. First, the value of
 consumption feedback depends on both measurement and prediction. Explicit
@@ -57,13 +56,13 @@ larger requests. Development-only tuning and a common prelaunch information
 boundary keep the component studies comparable.
 
 Third, repeated execution and adaptation to new inputs test different
-properties. A frozen model and history assess what prior observations
-already support. Online updating additionally incorporates outcomes from
-the new executions. Comparing these modes from the same initial state
-on the same unseen inputs provides a controlled test of adaptation.
-In live execution, allocation coverage must be accompanied by observed
-failures and retries, since a request below recorded peak memory does not
-by itself establish an OOM event.
+properties. Repeating a workload supplies additional observations of
+familiar inputs; applying the resulting allocator to a different study
+also changes task behavior. Comparing branches from a shared checkpoint
+can examine the value of the additional pass, while tracking online updates
+separately from pre-existing knowledge. Initial-request coverage must be
+reported alongside actual grants, failures, and retries: an execution
+allowance can prevent an OOM even when the model request is below peak RSS.
 
 Our evaluation addresses three aspects of practical memory allocation:
 \begin{itemize}
@@ -74,12 +73,9 @@ predicted consumption, or both to static features and memory history;
 \item \emph{Allocation benefit and cost:} downstream allocations under
 selective auditing, estimated memory-time savings relative to auditing
 overhead, with coverage and reservation cost evaluated together; and
-\item \emph{Online deployment and adaptation:} the existing Bowtie2
-feedback loop and a controlled evaluation protocol for frozen versus
-online-updated allocation on previously unseen inputs.
+\item \emph{Online deployment and adaptation:} new Bowtie2 cold-to-warm executions, adaptation to a disjoint input study,
+and a shared-checkpoint comparison with and without the extra warm pass.
 \end{itemize}
-% Unseen-input results remain pending; this introduction
-% describes the evaluation scope and protocol without inventing outcomes.
 CAMP's architecture and previously reported results remain prior work.
 The extension examines when its additional information is useful and
 whether the allocation benefit justifies the measurement cost.

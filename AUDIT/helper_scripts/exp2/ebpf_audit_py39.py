@@ -30,6 +30,7 @@
 import argparse
 import ctypes
 import os
+import shlex
 import subprocess
 import sys
 import time
@@ -149,8 +150,17 @@ static __always_inline int record_read_bytes(u32 tgid, int fd, ssize_t ret)
     return 0;
 }
 
+#ifdef CAMP_RAW_OPENAT
+// Equivalent entry arguments via the raw syscall event on affected hosts.
+TRACEPOINT_PROBE(raw_syscalls, sys_enter)
+#else
 TRACEPOINT_PROBE(syscalls, sys_enter_openat)
+#endif
 {
+#ifdef CAMP_RAW_OPENAT
+    if (args->id != CAMP_OPENAT_NR)
+        return 0;
+#endif
     u64 pid_tgid = bpf_get_current_pid_tgid();
     bump_counter(31);
     u32 pid = pid_tgid;
@@ -161,7 +171,11 @@ TRACEPOINT_PROBE(syscalls, sys_enter_openat)
 
     bump_counter(1);
     struct filename_t fname = {};
+#ifdef CAMP_RAW_OPENAT
+    bpf_probe_read_user_str(fname.name, sizeof(fname.name), (void *)args->args[1]);
+#else
     bpf_probe_read_user_str(fname.name, sizeof(fname.name), args->filename);
+#endif
     pending_open.update(&pid_tgid, &fname);
     return 0;
 }
@@ -389,7 +403,8 @@ def attach_and_collect(
     if no_filter:
         program_text = "#define DISABLE_TRACK_FILTER 1\n" + program_text
 
-    b = BPF(text=program_text)
+    # Host compiler compatibility flags; empty preserves the original build.
+    b = BPF(text=program_text, cflags=shlex.split(os.environ.get("CAMP_BCC_CFLAGS", "")))
     tracked_pids = b.get_table("tracked_pids")
     if not no_filter:
         tracked_pids[ctypes.c_uint(root_tgid)] = ctypes.c_ubyte(1)

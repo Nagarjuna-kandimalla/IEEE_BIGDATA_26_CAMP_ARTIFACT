@@ -1,0 +1,21 @@
+{
+  "controller_node": "controller",
+  "controller_partition": "main",
+  "task_partition": "compute",
+  "workers": [
+    "worker-1",
+    "worker-2",
+    "worker-3"
+  ],
+  "python": "/shared/camp/python39/bin/python",
+  "nextflow": "/usr/local/bin/nextflow",
+  "controller_cpus": 8,
+  "controller_memory": "8G",
+  "learner_cpus": 4,
+  "learner_memory": "16G",
+  "queue_size": 48,
+  "per_worker_task_admission": 16,
+  "nfs_audit_uid": 65534,
+  "archive_directory": "/var/lib/camp-reproduction/archives",
+  "archive_between_stages": true
+}

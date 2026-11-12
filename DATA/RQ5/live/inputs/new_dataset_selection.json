@@ -1,0 +1,31 @@
+{
+  "source_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA486148&result=read_run&fields=run_accession%2Cstudy_accession%2Csample_accession%2Csecondary_sample_accession%2Csample_alias%2Cscientific_name%2Ctax_id%2Clibrary_strategy%2Clibrary_source%2Clibrary_layout%2Cinstrument_platform%2Cinstrument_model%2Cread_count%2Cbase_count%2Cfastq_ftp%2Cfastq_bytes%2Cfastq_md5%2Cstudy_title&format=tsv&download=true",
+  "study": "PRJNA486148",
+  "title": "The Mcm2-Ctf4-Pola axis facilitates parental histone transfer to lagging strands",
+  "eligible_runs": 101,
+  "selected_runs": 38,
+  "unique_samples": 38,
+  "read_length_distribution": {
+    "75": 34,
+    "102": 4
+  },
+  "selected_compressed_GiB": 15.197706447914243,
+  "old_compressed_GiB": 15.136157166212797,
+  "chunks": 1974,
+  "logical_tasks": 6000,
+  "overlap_with_entire_PRJEB11501": {
+    "run_accession": [],
+    "sample_accession": [],
+    "secondary_sample_accession": [],
+    "fastq_md5": [],
+    "fastq_ftp": []
+  },
+  "selection_rule": "38 runs closest to original median paired compressed size by absolute log ratio; accession tie-break, no measured outcomes used",
+  "read_pair_minimum": 1993469,
+  "manifest_path": "/tmp/ieee-bigdata-new-input-research/candidate_PRJNA486148_6000_tasks.tsv",
+  "https_head_checks": {
+    "total": 76,
+    "ok": 76,
+    "failed": []
+  }
+}

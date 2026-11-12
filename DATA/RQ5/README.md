@@ -21,3 +21,12 @@ Verify the split input with:
 gzip -t DATA/RQ5/inputs/split_manifest_primary.tsv.gz
 echo '8f394de506a8e27448611af57eaa0235c1c6291b8657b6485dd09b0fe744f7ce  DATA/RQ5/inputs/split_manifest_primary.tsv.gz' | sha256sum -c -
 ```
+
+## Completed live experiments
+
+`live/inputs/` contains the original/new ENA manifests and MD5 metadata.
+`live/models/` contains exact offline/terminal model-history snapshots and SIF
+containers in a deduplicated verified blob store. See
+[the complete live reproduction guide](../../SCRIPTS/RQ5/LIVE_EXPERIMENTS.md).
+Raw FASTQs are fetched from their exact public URLs with MD5 verification;
+the large input/output payload bytes are not ordinary Git objects.

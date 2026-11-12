@@ -1,0 +1,47 @@
+{
+  "attempt_exit_counts": {
+    "0": 6000,
+    "1": 9
+  },
+  "base_training_frame": "model/base_training_frame.tsv",
+  "calibration_and_history_preflight": {
+    "calibration_model_version": "exp02_cold-0044-completed-06000",
+    "calibration_rows": 64,
+    "history_rows": 34490,
+    "mode": "warm",
+    "model_knows_target": true,
+    "model_version": "exp02_cold-0044-completed-06000",
+    "sqlite_rows": 34490,
+    "status": "PASS",
+    "target_rows": {
+      "history": 6000,
+      "sqlite": 6000,
+      "training": 6000
+    },
+    "training_rows": 34490,
+    "workflow": "bowtie2"
+  },
+  "duplicate_success_observations": 0,
+  "excluded_raw_diagnostic_rows": 0,
+  "expected_bowtie2_history_rows": 6000,
+  "expected_tasks": 6000,
+  "history_db": "history.sqlite3",
+  "history_features": "history_features.tsv",
+  "history_protocol": "All fitted observations retained, including repeated successful attempts. Failed diagnostics retained separately; warm seed projects exactly the model-used observation IDs.",
+  "history_rows_matching_model": 34490,
+  "inherited_bowtie2_observations": 0,
+  "model_root": "model",
+  "model_version": "exp02_cold-0044-completed-06000",
+  "phase": "warm_transfer_cold",
+  "raw_history_retained_at": "task_outcomes.jsonl.gz",
+  "raw_history_rows": 34490,
+  "resource_protocol": "Frozen final settings, explicit 128 MiB execution allowance; predictions and actual grants reported separately.",
+  "samtools_quickcheck": "PASS",
+  "status": "PASS",
+  "successful_attempt_observations": 6000,
+  "successful_unique_tasks": 6000,
+  "verified_at": 1794411537.0234923,
+  "verified_bai_files": 1974,
+  "verified_bam_files": 1974,
+  "verified_flagstat_files": 1974
+}

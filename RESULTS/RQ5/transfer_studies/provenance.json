@@ -1,0 +1,23 @@
+{
+  "phases": {
+    "warm_transfer_cold": {
+      "original_run": "warm_transfer_cold",
+      "handoff_sha256": "26d49bc00dd3f3373114543553e1717c865bc7172a0fc3761a91c1ffeec3e5a3"
+    },
+    "warm_transfer_warm": {
+      "original_run": "warm_transfer_warm",
+      "handoff_sha256": "df99a4cffacd62c6677a0ca3eb852197dd607b49ce16d624e33b7e8cbf4b0984"
+    },
+    "warm_transfer_new_input": {
+      "original_run": "warm_transfer_new_input",
+      "handoff_sha256": "9deecd95a6d6a459205b310c72b1b4256ace547cf318622938d31bd3bb691cd0"
+    },
+    "direct_transfer_new_input": {
+      "original_run": "direct_transfer_new_input",
+      "handoff_sha256": "4e664ee4780c6ff91d9a8c711c595725aa78b9d6a8c680b5feca1494fdc908bb"
+    }
+  },
+  "metric_definition": "RQ5 first CAMP request, final successful peak/runtime, successful unique tasks; excludes 128 MiB allowance and failed-attempt overhead.",
+  "direct_transfer_parent": "warm_transfer_cold",
+  "cold_rerun": false
+}

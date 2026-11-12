@@ -12,3 +12,6 @@
 *.bai binary
 *.cram binary
 *.crai binary
+
+# Lossless live model/container parts must stay byte-exact.
+DATA/RQ5/live/models/blobs/* binary

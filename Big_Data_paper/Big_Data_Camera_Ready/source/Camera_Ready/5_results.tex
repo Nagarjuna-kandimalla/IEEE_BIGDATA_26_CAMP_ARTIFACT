@@ -1,13 +1,13 @@
 \section{Results}
 \label{sec:results}
-The following results distinguish published WORKS endpoints from further
-analysis of retained measurements. Unseen-input results
-remain pending.
+We distinguish published WORKS endpoints, reanalysis of retained component
+measurements, and the new live executions described in
+Section~\ref{sec:live-method}.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{\campReadyPath result_assets/bowtie_margins.pdf}
-\caption{Initial allocation margins in the retained Bowtie2 runs. The warm run concentrates requests near recorded peaks; repeated inputs do not test unseen-input adaptation.}
+\includegraphics[width=\columnwidth]{\campReadyPath result_assets/live_margins.pdf}
+\caption{CAMP request margins in the new live executions: Warm-Transfer cold, warm, and new input after warm; Direct-Transfer new input directly after the shared cold checkpoint. Margins exclude the 128~MiB execution allowance. Negative margins denote nominal requests below task peak, not observed OOMs.}
 \label{fig:bowtie}
 \end{figure}
 
@@ -69,34 +69,64 @@ $-0.429$ with interval $[-1.077,0.346]$~GiB-hours. At 25, 30, 50, and
 $-116.084$~GiB-hours. These values identify when the fixed saving covers
 measured audit cost; they are not end-to-end deployment savings.
 
-\subsection{Existing Bowtie2 online deployment}
-Table~\ref{tab:bowtie} reports the retained live runs. Warm execution
-reduces aggregate initial requests by 71.96\%, from 898.39 to
-251.93~GiB, while observed peak totals remain approximately 239~GiB.
-Unused memory-time decreases from 23.954 to 0.018~GiB-hours. This
-logical-task measure excludes the cost of failed attempts and the
-separately measured auditing and learning overheads.
+
+\subsection{Repeated-input learning and new-input adaptation}
+Table~\ref{tab:bowtie} reports the main live experiment. Cold-to-warm
+execution reduces aggregate CAMP requests by 75.34\%, from 977.79 to
+241.12~GiB, while peak totals remain approximately 229.3~GiB.
+Unused memory-time falls from 32.86089 to 0.01847~GiB-hours.
+Warm requests cover measured peaks for 99.58\% of tasks, and median
+prediction error is 1.13\%. These observations indicate more economical
+requests after repeated-input feedback, conditional on the deployment
+and accounting boundaries in Section~\ref{sec:live-method}.
 
 \begin{table}[!t]
-\caption{Existing Bowtie2 cold-to-warm deployment on repeated inputs. Each run contains 6,000 logical tasks across seven processes.}
+\caption{Main live experiment (Warm-Transfer): 6,000 successful tasks per stage. Requests, coverage, and unused memory exclude the execution allowance.}
 \label{tab:bowtie}
-\centering\small
-\input{\campReadyPath result_assets/bowtie_table}
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\input{\campReadyPath result_assets/warm_transfer_table}
 \end{table}
 
+On new input, peak totals rise to 273.44~GiB and requests to 319.22~GiB,
+increases of 19.21\% and 32.39\% over warm execution, respectively.
+Coverage falls to 94.15\%, while unused memory-time rises to
+0.12805~GiB-hours. The new study therefore exposes undercoverage that is
+not apparent from the repeated-input result, even though learning continues.
+Alignment is particularly affected: its median prediction error increases
+from 0.91\% to 15.60\%. This process-level result is obscured by the overall
+new-input median of 4.73\%, since indexing and flagstat constitute most
+tasks and retain different memory behavior. Figure~\ref{fig:bowtie} shows
+the corresponding changes in request margins.
 
+\subsection{Effect of the additional warm pass}
+Table~\ref{tab:warm-ablation} compares the new-input branches from the
+shared cold checkpoint. Without the extra warm pass, CAMP requests
+343.56~GiB rather than 319.22~GiB, an increase of 7.62\%.
+Peak totals differ by 1.65\%, whereas unused memory-time increases by
+72.65\%, from 0.12805 to 0.22109~GiB-hours. Coverage nevertheless improves
+from 94.15\% to 95.78\%, and overall median error falls from 4.73\% to
+2.69\%. Alignment median error moves in the other direction, from
+15.60\% to 18.96\%; an overall median alone does not establish improvement
+for every process.
 
-Figure~\ref{fig:bowtie} shows the proportion allocated between the peak
-and 10\% above it increasing from 75.25\% to 92.73\%. Requests below
-recorded peak increase from four to thirteen, giving warm coverage of
-99.78\%. All 6,000 tasks eventually complete in both runs, with 16 and
-15 retries. The records flag no first-attempt OOMs; below-peak requests
-must therefore not be relabeled observed OOM failures. This experiment
-supports feedback reuse on repeated inputs; it does not establish transfer
-to unseen data.
+\begin{table}[!t]
+\caption{Shared-cold-checkpoint ablation on the same 6,000 new-input tasks: Warm-Transfer includes an extra original-data warm pass; Direct-Transfer proceeds directly from cold.}
+\label{tab:warm-ablation}
+\centering\footnotesize
+\input{\campReadyPath result_assets/direct_transfer_table}
+\end{table}
 
-\subsection{Remaining evaluation}
-Results for the unseen-input frozen-versus-online comparison are
-\textbf{?} (pending). Prediction latency and
-retraining resource costs also remain \textbf{?}; no claim of total
-system-level net benefit is made from the audit-only accounting.
+The extra warm pass thus yields lower requested capacity and unused
+memory-time in this execution, but lower new-input coverage. It does not
+dominate the direct branch on every metric. Both new-input stages complete
+all tasks with no recorded OOMs and no duplicate successful observations.
+All 1,974 flagstat summaries match exactly between the new-input branches;
+this checks summary agreement, not byte identity of the BAM files.
+The separate execution allowance prevents interpreting this as evidence
+of OOM-free operation using nominal CAMP requests alone. Because the
+branches continue learning and the control node differs, this is neither
+a frozen-model generalization test nor an estimate of a universal causal
+benefit from additional warm training. Prediction latency and full
+retraining resource costs are not isolated; no end-to-end net-saving claim
+follows from these logical-task memory-time measures.

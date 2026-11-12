@@ -1,0 +1,90 @@
+{
+  "source_sha256": {
+    "RESULTS/RQ5/transfer_studies/warm_transfer_cold/task_instances.tsv.gz": "bd9bb67af07fa388aae7791f409fb9ea639d1af34e707ff1a501899ddc2b4639",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_cold/summary.json": "b27148f46f4e00e105fa60fcffe271953c8a6c16a93d157ec0f304bc84069fbb",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_cold/handoff.json": "c741eb5fb58d88753cd9cef6799e9efe1bdfd1be7fa9cb3f88d5d25713d53527",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_warm/task_instances.tsv.gz": "b659f58a29e956ed7058292374468985c4b573d6f0639f818b568c7f3bf71bc7",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_warm/summary.json": "c37e945c0cad83b59415202fe4582e71f87b2e9a1ac7c54cbcda10dce90e88a3",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_warm/handoff.json": "4a6018406acefd3937b19f9924a28aa07e9419d4f6a1e5994969f6181ef77560",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_new_input/task_instances.tsv.gz": "d8b61d20a01d24338b58676a800074905819e8dd8e56925b09388de576af70c5",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_new_input/summary.json": "a93001bddef5193d6006ede387e1ddf59ae7f5d1b1e4f79ca89bc8fb9cc073cd",
+    "RESULTS/RQ5/transfer_studies/warm_transfer_new_input/handoff.json": "64deb0c4eb004edf6ed8da9284b35891f05005b7d0046b3c7452c26fcde5e7e1",
+    "RESULTS/RQ5/transfer_studies/direct_transfer_new_input/task_instances.tsv.gz": "1562e8c28bba2d6f37894412d62512a11a9168607a734066754327568f2f0986",
+    "RESULTS/RQ5/transfer_studies/direct_transfer_new_input/summary.json": "7fb1bad708dcd2509210c37139646f3d04483ecf212fc1b12aae292396f054d7",
+    "RESULTS/RQ5/transfer_studies/direct_transfer_new_input/handoff.json": "7c8169e2dd74204370ff54478fe68fdfe03f582585bc5a8449ac862202c25433"
+  },
+  "metrics": {
+    "warm_transfer_cold": {
+      "request_gib": 977.787109375,
+      "peak_gib": 229.3280029296875,
+      "unused_gibh": 32.86088721465005,
+      "coverage": 99.53333333333333,
+      "mdape": 1.657774168146711,
+      "alignment_mdape": 1.289099983295015,
+      "oom": 0,
+      "tasks": 6000
+    },
+    "warm_transfer_warm": {
+      "request_gib": 241.12109375,
+      "peak_gib": 229.38092422485352,
+      "unused_gibh": 0.01846851199467977,
+      "coverage": 99.58333333333333,
+      "mdape": 1.1279214114766152,
+      "alignment_mdape": 0.9143537727358408,
+      "oom": 0,
+      "tasks": 6000
+    },
+    "warm_transfer_new_input": {
+      "request_gib": 319.2236328125,
+      "peak_gib": 273.4394416809082,
+      "unused_gibh": 0.12805401049719917,
+      "coverage": 94.15,
+      "mdape": 4.734886747039645,
+      "alignment_mdape": 15.60297855612323,
+      "oom": 0,
+      "tasks": 6000
+    },
+    "direct_transfer_new_input": {
+      "request_gib": 343.55859375,
+      "peak_gib": 277.9579277038574,
+      "unused_gibh": 0.22108903188705445,
+      "coverage": 95.78333333333333,
+      "mdape": 2.6851564909530774,
+      "alignment_mdape": 18.963645077050714,
+      "oom": 0,
+      "tasks": 6000
+    }
+  },
+  "margin_percent": [
+    [
+      0.46666666666666673,
+      44.88333333333333,
+      35.9,
+      3.6999999999999997,
+      15.049999999999999
+    ],
+    [
+      0.4166666666666667,
+      61.483333333333334,
+      37.25,
+      0.8166666666666665,
+      0.03333333333333333
+    ],
+    [
+      5.8500000000000005,
+      16.733333333333334,
+      28.016666666666666,
+      33.916666666666664,
+      15.483333333333333
+    ],
+    [
+      4.216666666666667,
+      34.449999999999996,
+      33.0,
+      10.733333333333334,
+      17.599999999999998
+    ]
+  ],
+  "definition": "First CAMP request and final successful peak/runtime. Excludes 128 MiB execution allowance; zero failed-attempt cost included.",
+  "direct_transfer_parent": "Exact Warm-Transfer cold checkpoint, no rerun."
+}

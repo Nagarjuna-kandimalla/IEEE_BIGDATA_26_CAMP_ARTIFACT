@@ -185,7 +185,17 @@ must be evaluated, not replaced with frozen counts. Retained package verificatio
 logs describe earlier verification; [this repository's verification record](DOCS/VERIFICATION.md)
 states what was actually executed during this packaging pass.
 
-## E. Retained live Bowtie2 cold/warm deployment
+## E. Live Bowtie2 experiments and retained cold/warm deployment
+
+The completed Warm-Transfer and Direct-Transfer studies now include portable run code, offline and
+terminal model/history bundles, exact tool images, ENA input manifests and
+complete scientific result records. Start with
+[**the live experiment reproduction guide**](SCRIPTS/RQ5/LIVE_EXPERIMENTS.md).
+Warm-Transfer is the main cold/warm/new-input experiment; Direct-Transfer branches from its exact
+cold checkpoint and skips warm.
+
+The older retained cold/warm figures remain a separate reproduction route.
+
 
 Follow [SCRIPTS/RQ5/README.md](SCRIPTS/RQ5/README.md) from its full-run entry point.
 It describes initial-state rebuilding, causal online feedback, source inputs,

@@ -1,0 +1,7 @@
+{
+  "source_url": "https://ftp.ensembl.org/pub/release-116/fasta/saccharomyces_cerevisiae/dna/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz",
+  "fasta_sha256": "35cc97fccb91762c7a1f0f71b4adb1037b143d48b63fbd3b3f8bad45e5afa44c",
+  "fasta_bytes": 12360704,
+  "snapshot_gzip_sha256": "5d02ba6cef123932266f9b1c013cf23423615edc0d992129a5889debc600599e",
+  "note": "Lossless gzip of the exact decompressed FASTA used in Exp02. Compression bytes need not match original Ensembl gzip wrapper."
+}

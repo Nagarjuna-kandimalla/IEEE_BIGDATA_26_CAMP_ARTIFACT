@@ -69,8 +69,22 @@ for data sources, metrics, and interpretation.
 
 ## Verified build
 
-The included source compiled to six pages with Tectonic 0.17 and BibTeX.
-Rendered pages matched the included preview. Citations and cross-references
+The included source compiled to seven pages with Tectonic 0.17 and BibTeX.
+The preview was rebuilt after integrating the completed Warm-Transfer/Direct-Transfer results and all four pages were inspected. Citations and cross-references
 resolved, with no missing glyphs or overfull boxes. The retained compiler
 notices concern underfull lines and an encoding warning in an external
 algorithm-package comment.
+
+
+## Completed live-study revision
+
+The live methods and results use Warm-Transfer as the main cold/warm/new-input sequence
+and Direct-Transfer as a shared-cold-checkpoint warm-pass ablation. Both new-input arms
+continue learning; there is no frozen-model arm. Nominal CAMP metrics exclude
+the 128 MiB execution allowance. The control-node downsizing and retained
+system-feature encoding are disclosed as validity limits. Only the two named studies enter the published comparison.
+
+`build_result_assets.py` now also calls `build_live_assets.py`, which reads the
+self-contained `RESULTS/RQ5/transfer_studies/` copies. TeX builds still need
+only the included generated assets. `MANUSCRIPT_REVIEW.md` records the scope
+and remaining evidence limits; it is not part of the submitted manuscript.

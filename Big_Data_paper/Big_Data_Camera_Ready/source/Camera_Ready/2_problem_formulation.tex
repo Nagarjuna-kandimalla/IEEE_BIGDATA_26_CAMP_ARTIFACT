@@ -56,9 +56,9 @@ and retry accounting must be stated rather than treated as measured zero
 cost. When estimating net savings, auditing overhead must be charged in
 compatible units and distinguished from prediction or retraining cost.
 
-For unseen-input evaluation, a frozen condition holds the model, history,
-and calibration state fixed. An online condition starts from the same
-state and incorporates eligible completed outcomes. This comparison
-separates allocation from existing knowledge from adaptation during the
-new workload. Both conditions exclude the current task's outcomes from
-its prelaunch decision.
+For the live study, both new-input branches update their models, history,
+and calibration from completed outcomes. They differ in whether a further
+pass over the original inputs precedes the new workload. This tests the
+value of additional familiar-input feedback during subsequent adaptation;
+it does not isolate the effect of updating relative to a frozen allocator.
+Both branches exclude the current task's outcome from its prelaunch decision.

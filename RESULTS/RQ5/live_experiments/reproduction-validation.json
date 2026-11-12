@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "tests": [
+    "All stage metrics recomputed independently",
+    "All model/container blobs decoded and verified separately",
+    "Fresh path with spaces configured; full frozen source hashes pass",
+    "Offline seed preflight: zero Bowtie2 history",
+    "Slurm API simulated: sequential gates and shared-cold parent; no real jobs submitted",
+    "Duplicate submission refused",
+    "Recorded cold restored at another path with matching history/calibration and SQLite integrity",
+    "Saved-cold branch omits cold/warm executions"
+  ],
+  "scope": "Packaging, preflight, configuration and simulated orchestration checks. A new full Slurm biological rerun was NOT performed.",
+  "deep_model_verification": "PASS: 1264 retained model/container blobs verified, including decoded original bytes",
+  "live_full_rerun_performed_during_packaging": false,
+  "restored_predictions_match_original": {
+    "status": "PASS",
+    "cases": 3,
+    "source_model": "exp02_cold-0044-completed-06000",
+    "predictions": [
+      {
+        "process": "ALIGN_CHUNK",
+        "allocation_mib": 46,
+        "model_version": "exp02_cold-0044-completed-06000",
+        "c_hat_bytes": 120268115.18814
+      },
+      {
+        "process": "INDEX_BAM",
+        "allocation_mib": 39,
+        "model_version": "exp02_cold-0044-completed-06000",
+        "c_hat_bytes": 21092993.830783825
+      },
+      {
+        "process": "FLAGSTAT_BAM",
+        "allocation_mib": 39,
+        "model_version": "exp02_cold-0044-completed-06000",
+        "c_hat_bytes": 21115494.287754398
+      }
+    ],
+    "checkpoint_alias": "warm_transfer_cold"
+  },
+  "io_and_routing_regression_tests": {
+    "status": "PASS",
+    "tests": 2,
+    "scope": "Checksum refusal and configured partition/128 MiB routing; simulated filesystem/network/Slurm only."
+  },
+  "public_studies": [
+    "warm_transfer",
+    "direct_transfer"
+  ],
+  "retained_stage_count": 4
+}

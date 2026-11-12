@@ -29,7 +29,8 @@ policy_source="$experiment_root/artifacts/policies"
 camp_policy_source="$experiment_root/artifacts/camp_policy.json"
 experiment_config="$camp_source_root/original_offline_replay/config/experiment.json"
 workflow_config="$online_root/configs/bowtie2_online.config"
-input_source="$workflow_root/data/public_runs_prjeb11501_online_unseen_6000.tsv"
+input_source="${CAMP_INPUT_MANIFEST:-$workflow_root/data/public_runs_prjeb11501_online_unseen_6000.tsv}"
+dataset_id="${CAMP_DATASET_ID:-bowtie2_prjeb11501_online_unseen_6000}"
 label="$1"
 model_source="$(realpath "$2")"
 history_features_source="$(realpath "$3")"
@@ -85,6 +86,11 @@ python "$online_root/scripts/preflight_run_inputs.py" \
   --expected-workflow-rows "$expected_bowtie_rows"
 
 mkdir -p "$run_root"
+if [[ -n "${CAMP_NFS_AUDIT_ACL_UID:-}" ]]; then
+  mkdir -p "$run_root/results/ebpf"
+  setfacl -m "u:${CAMP_NFS_AUDIT_ACL_UID}:rwx,d:u:${CAMP_NFS_AUDIT_ACL_UID}:rwx" \
+    "$run_root/results/ebpf"
+fi
 export PATH="$workflow_root/tool_shims:$PATH"
 for command in apptainer wget gzip; do
   command -v "$command" >/dev/null 2>&1 || {
@@ -246,7 +252,9 @@ learner_job_id="$(
   sbatch --parsable \
     --partition="${CAMP_SLURM_QUEUE:-main}" \
     --nodelist="${CAMP_LEARNER_NODELIST:-mempred-worker-13}" \
-    --constraint="${CAMP_WORKER_CONSTRAINT:-standard}" \
+    --constraint="${CAMP_WORKER_CONSTRAINT-standard}" \
+    --cpus-per-task="${CAMP_LEARNER_CPUS:-16}" \
+    --mem="${CAMP_LEARNER_MEMORY:-64G}" \
     --output="$camp_root/learner-%j.out" \
     --error="$camp_root/learner-%j.err" \
     "$online_root/slurm/run_fresh_learner.slurm" \
@@ -272,7 +280,7 @@ learner_job_id="$(
     --update-every 128 \
     --process-min-support 16 \
     --calibration-window 64 \
-    --n-jobs 16
+    --n-jobs "${CAMP_LEARNER_CPUS:-16}"
 )"
 echo "$learner_job_id" > "$camp_root/learner_job_id.txt"
 
@@ -347,7 +355,7 @@ done
   exit 2
 }
 
-run_manifest="$snapshot_root/public_runs_prjeb11501_online_unseen_6000.tsv"
+run_manifest="$snapshot_root/$(basename "$input_source")"
 cd "$run_root"
 set +e
 nextflow \
@@ -424,14 +432,14 @@ mkdir -p \
 python "$artifact_root/WORKFLOWS/common/build_static_manifest.py" \
   bowtie2 \
   --runs "$run_manifest" \
-  --dataset-id bowtie2_prjeb11501_online_unseen_6000 \
+  --dataset-id "$dataset_id" \
   --out "$run_root/results/manifests/static_task_manifest.tsv"
 
 if [[ -f "$run_root/results/pipeline_info/execution_trace.txt" ]]; then
   set +e
   python "$artifact_root/WORKFLOWS/common/normalize_nextflow_baseline_trace.py" \
     --workflow bowtie2 \
-    --dataset-id bowtie2_prjeb11501_online_unseen_6000 \
+    --dataset-id "$dataset_id" \
     --static-manifest \
     "$run_root/results/manifests/static_task_manifest.tsv" \
     --instrumentation ebpf \

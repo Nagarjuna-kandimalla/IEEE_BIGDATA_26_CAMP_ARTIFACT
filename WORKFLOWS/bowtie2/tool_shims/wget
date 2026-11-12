@@ -12,8 +12,10 @@ done
 
 status=0
 /usr/bin/wget \
+  --no-verbose \
   --tries=10 \
   --retry-connrefused \
+  --retry-on-http-error=403,408,429,500,502,503,504 \
   --waitretry=5 \
   --timeout=120 \
   "$@" || status=$?

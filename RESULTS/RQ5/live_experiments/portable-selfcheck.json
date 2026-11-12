@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "tests": [
+    "All four stage metrics recomputed independently",
+    "All model/container blobs decoded and verified separately",
+    "Fresh path with spaces configured; full frozen source hashes pass",
+    "Offline seed preflight: zero Bowtie2 history",
+    "Slurm API simulated: sequential gates and shared-cold parent; no real jobs submitted",
+    "Duplicate submission refused",
+    "Recorded cold restored at another path with matching history/calibration and SQLite integrity",
+    "Saved-cold branch omits cold/warm executions"
+  ],
+  "scope": "Packaging, preflight, configuration and simulated orchestration checks. A new full Slurm biological rerun was NOT performed."
+}

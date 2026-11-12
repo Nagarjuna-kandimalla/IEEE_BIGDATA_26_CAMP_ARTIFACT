@@ -1,9 +1,9 @@
 \section{Experimental Method}
 \label{sec:experiments}
 \subsection{Populations and comparison conditions}
-We analyze retained predictions and execution records in the CAMP
-artifact~\cite{campArtifact}; no new workflow execution is implied by
-replotting these measurements. The feature and mmap studies use 33,516
+We combine retained component-study records from the CAMP artifact~\cite{campArtifact}
+with new live Bowtie2 executions. Replotting the retained measurements does
+not imply that their workflows were rerun. The feature and mmap studies use 33,516
 tasks from GATK, Minimap2, Sarek, Seqinspector, Taxprofiler, and
 Viralmetagenome. The fixed seed-1996 split assigns 28,490 tasks to
 development and 5,026 to evaluation, using chronological ordering within
@@ -57,14 +57,64 @@ the allocation improvement caused by each budget. Recorded 95\% intervals
 use paired grouped bootstrap for downstream differences and bootstrap of
 five seed-level means for audit accounting.
 
-\subsection{Live deployment}
-The retained Nextflow/Slurm deployment uses 12 task workers and a thirteenth
-node for control, prediction, and learning, each with 32 vCPUs and about
-256~GB RAM. Bowtie2 processes 38 paired ENA runs through seven workflow
-processes, producing 6,000 logical tasks per execution. The cold run starts
-without Bowtie2 history, updates during execution, and seeds a fresh warm
-execution of the same inputs; Nextflow's task cache is not reused. Both
-runs audit all tasks. Logical-task metrics use initial requests and final
-recorded peaks/runtimes; attempt tables separately retain failures and
-retries. These runs do not compare frozen and online-updated allocation
-on unseen inputs.
+
+\subsection{Live deployment and new-input branches}
+\label{sec:live-method}
+The Warm-Transfer study~\cite{campLiveArtifact}
+has three stages:
+cold, warm on the same inputs, and new input. Each contains 6,000 logical
+tasks across seven Bowtie2 processes and produces 1,974 aligned chunks.
+The original manifest selects 38 paired yeast ChIP-seq runs from ENA study
+PRJEB11501; the new manifest selects 38 paired runs from PRJNA486148~\cite{enaOriginal,enaNew}.
+The new runs were selected using input metadata and compressed size,
+without execution outcomes: 15.20 versus 15.14~GiB. Their run/sample
+identities, URLs, and FASTQ MD5 values do not overlap the original study.
+The inputs are not distribution-matched: 34 new runs have 75-base reads
+and four have 102-base reads, versus 102-base reads in the original set.
+
+Cold execution starts from the fixed seed-1996 offline bundle trained on
+28,490 non-Bowtie2 tasks and its leave-one-workflow-out cold-start policy.
+It begins with no Bowtie2 history, but learns during execution. Warm starts
+from the validated cold terminal model and matching history and calibration;
+new input starts from the corresponding warm terminal state. Each stage
+uses a fresh workflow directory, without cross-stage task-cache reuse.
+The Direct-Transfer ablation instead starts the same new manifest from the
+\emph{exact saved Warm-Transfer cold state}, skipping the original-data warm pass.
+It does not rerun cold execution. Thus, the branches enter new input with
+12,000 versus 6,000 prior Bowtie2 observations, respectively.
+
+All live tasks are audited; selective auditing is evaluated only in the
+separate replay. Successful completed outcomes become eligible for fitting;
+failed outcomes remain diagnostics. The asynchronous learner first updates
+after 128 eligible outcomes and then at 128-observation thresholds. The
+latest 64 observations are held out from fitting for version-matched
+calibration; a terminal update includes remaining eligible outcomes.
+Consumption is measured after completion, whereas the task's allocation
+uses a prelaunch prediction. Model seeds, allocation rules, and worker
+settings are shared between branches.
+
+Execution uses three 16-vCPU, 64-GiB workers (50~GiB exposed per worker to
+Slurm). The main experiment uses a 16-vCPU, 64-GiB control node; the direct
+cold branch uses an 8-vCPU, 32-GiB control node after downsizing. Both learners
+retain four CPUs. Nextflow 25.10.7 launches Bowtie2 2.4.2 and samtools 1.20.
+Slurm grants add a fixed 128~MiB to each CAMP request for execution overhead;
+this allowance is excluded from $\hat y_t$, reported coverage, and $W$.
+Task retries are limited to three after the initial attempt. Validation
+checks logical-task coverage, audit outcomes, BAM integrity, and the
+consistency of the terminal model, history, and calibration.
+
+\subsection{Interpretation and validity}
+Logical-task metrics pair the first CAMP request with the final successful
+peak and runtime. Failed-attempt resource costs, auditing, prediction, and
+retraining costs are excluded from $W$; actual grants and attempt records
+are retained separately. A zero OOM count under the execution allowance
+therefore does not establish that CAMP's nominal requests are sufficient.
+The shared cold checkpoint avoids variation from an independent cold
+rerun, but asynchronous completion order can change later model updates.
+Control-node downsizing also prevents a controlled runtime comparison.
+The model's system-context features retain the original deployment encoding
+(13 nodes, 32 vCPUs and 244.14~GiB per node), rather than being refitted to
+this cluster; conclusions are conditional on this configuration.
+Only one execution of each branch and one new input study are evaluated,
+so the results do not establish statistical significance or generalization
+across studies.

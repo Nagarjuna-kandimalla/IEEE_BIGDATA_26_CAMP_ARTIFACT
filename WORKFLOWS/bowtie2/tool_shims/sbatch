@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ -n "${CAMP_RQ5_LIVE_ROOT:-}" ]]; then
+  exec /usr/bin/python3 "$CAMP_RQ5_LIVE_ROOT/experiments/code/deployment/route_worker_submission.py" "$@"
+fi
+exec /usr/bin/sbatch "$@"

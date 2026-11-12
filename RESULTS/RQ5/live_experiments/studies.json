@@ -1,0 +1,40 @@
+{
+  "phases": {
+    "warm_transfer_cold": {
+      "study": "warm_transfer",
+      "stage": "cold",
+      "parent": null,
+      "expected_tasks": 6000,
+      "expected_chunks": 1974,
+      "dataset_id": "bowtie2_prjeb11501_online_unseen_6000"
+    },
+    "warm_transfer_warm": {
+      "study": "warm_transfer",
+      "stage": "warm",
+      "parent": "warm_transfer_cold",
+      "expected_tasks": 6000,
+      "expected_chunks": 1974,
+      "dataset_id": "bowtie2_prjeb11501_online_unseen_6000"
+    },
+    "warm_transfer_new_input": {
+      "study": "warm_transfer",
+      "stage": "new_input",
+      "parent": "warm_transfer_warm",
+      "expected_tasks": 6000,
+      "expected_chunks": 1974,
+      "dataset_id": "bowtie2_prjna486148_unseen_6000"
+    },
+    "direct_transfer_new_input": {
+      "study": "direct_transfer",
+      "stage": "new_input",
+      "parent": "warm_transfer_cold",
+      "expected_tasks": 6000,
+      "expected_chunks": 1974,
+      "dataset_id": "bowtie2_prjna486148_unseen_6000"
+    }
+  },
+  "aliases": {
+    "direct_transfer_cold": "warm_transfer_cold"
+  },
+  "provenance_policy": "Recorded task/model identifiers are immutable. Friendly study names do not rewrite fitted observation IDs or historical model versions."
+}
